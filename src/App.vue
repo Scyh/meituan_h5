@@ -1,31 +1,37 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app">
+        <transition name="slide" mode="out-in">
+            <keep-alive>
+                <router-view v-if="$route.meta.keepAlive"></router-view>
+            </keep-alive>
+        </transition>
+        <transition name="slide" mode="out-in">
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
+        </transition>
     </div>
-    <router-view/>
-  </div>
 </template>
 
+<script>
+export default {
+    name: "app"
+};
+</script>
+
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url('./common/style/common.scss');
+@import url('./common/style/iconfont.css');
+
+.slide-enter-active,
+.slide-leave-active {
+    transition: all .4s;
 }
-#nav {
-  padding: 30px;
+.slide-leave-active {
+    position: absolute;
+}
+.slide-enter,
+.slide-leave-to {
+    /* transform: translateX(50vw); */
+    opacity: 0;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

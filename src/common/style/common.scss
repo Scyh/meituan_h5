@@ -1,0 +1,23 @@
+html, body, ul, li  {
+    margin: 0;
+    padding: 0;
+}
+body {
+    color: #333;
+    font-family: Hiragino Sans GB, Arial, Helvetica, "\5B8B\4F53", sans-serif;
+}
+ul {
+    list-style: none;
+}
+[v-clock] {
+    display: none;
+}
+
+
+.iconempty {
+    width: 100px;
+    height: 120px;
+    display: inline-block;
+    background: url(http://s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:9096d347/5a331298a86e2c620b20b529850b1332.png);
+    background-size: 100%;
+}
