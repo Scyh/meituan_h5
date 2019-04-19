@@ -13,11 +13,14 @@ ul {
     display: none;
 }
 
-
 .iconempty {
     width: 100px;
     height: 120px;
     display: inline-block;
     background: url(http://s3plus.meituan.net/v1/mss_e2821d7f0cfe4ac1bf9202ecf9590e67/cdn-prod/file:9096d347/5a331298a86e2c620b20b529850b1332.png);
     background-size: 100%;
+}
+
+.iconfont {
+    font-size: 16px!important;
 }

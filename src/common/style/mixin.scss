@@ -1,0 +1,36 @@
+@mixin borderBottom($width: 100%, $height: 1px, $scale: scaleY(0.5)) {
+    content: "";
+    display: inline-block;
+    width: $width;
+    height: $height;
+    background: #e4e4e4;
+    transform: $scale;
+    -webkit-transform: $scale;
+    -moz-transform: $scale;
+    -ms-transform: $scale;
+    -o-transform: $scale;
+}
+
+//单行隐藏
+@mixin ellipsis($lines: 1) {
+    @if $lines != 1 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+    }@else {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+// flex
+@mixin flexBox($direction: row, $justify: center, $align: center, $wrap: noWrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+    flex-wrap: $wrap
+}

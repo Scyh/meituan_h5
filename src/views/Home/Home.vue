@@ -12,10 +12,45 @@
         <section class="near_shop">附近商家</section>
         <section class="screen_group">
             <ul>
-                <li class="screen_item" @click="sort">综合排序 <i class="iconfont iconmore"></i></li>
+                <li class="screen_item" @click="sort(1)">
+                    综合排序
+                    <i :class='["iconfont", "iconmore", show_sort ? "rotate" : ""]'></i>
+                    <ul v-if="show_sort">
+                        <li data-sort="1">综合排序</li>
+                        <li data-sort="2">速度最快</li>
+                        <li data-sort="3">评分最高</li>
+                        <li data-sort="4">起送价最低</li>
+                        <li data-sort="5">配送费最低</li>
+                        <li data-sort="6">人均高到低</li>
+                        <li data-sort="7">人均低到高</li>
+                    </ul>
+                </li>
                 <li class="screen_item">销量最高</li>
                 <li class="screen_item">距离最远</li>
-                <li class="screen_item">筛选<i class="iconfont iconshaixuan1"></i></li>
+                <li class="screen_item shaixuan" @click="sort(2)">
+                    筛选
+                    <i class="iconfont iconshaixuan1"></i>
+                    <ul v-if="show_screen">
+                        <li></li>
+                        <li></li>
+                        <li>
+                            <div>
+                                <section class="title">人均价</section>
+                                <section class="content">
+                                    <ul>
+                                        <li>20元以下</li>
+                                        <li>20-40元以下</li>
+                                        <li>40元以上</li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </li>
+                        <li class="btn-group">
+                            <div>清除筛选</div>
+                            <div>完成</div>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </section>
         <section class="shop_list" ref="shop_list">
@@ -26,11 +61,13 @@
                 </div>                    
             </template>
         </section>
+        <cus-mask :show="show_mask" @close="closeMask"></cus-mask>
     </div>
 </template>
 
 <script>
 import topHeader from '@/views/common/header'
+import cusMask from '@/components/Mask/Mask'
 import { getOffsetTop } from '@/common/javascript/util'
 export default {
     name: "home",
@@ -81,101 +118,220 @@ export default {
 
             ],
             shop_list: [],
+            show_sort: false,
+            show_screen: false,
+            show_mask: false,
         }
     },
     methods: {
 
         // 综合排序
-        sort() {
+        sort(num) {
             let offsetTop = getOffsetTop(this.$refs.shop_list);
             window.scrollTo(0, offsetTop);
+            this.closeMask();
+            if (num === 1) {
+                this.show_screen = false;
+                this.show_sort = !this.show_sort;
+            } else if (num === 2) {
+                this.show_sort = false;
+                this.show_screen = !this.show_screen;
+            }
+            this.show_mask = !this.show_mask;
+        },
+
+        closeMask() {
+            this.show_sort = false;
+            this.show_screen = false;
+            this.show_mask = false;
         }
     },
     components: {
-        topHeader
+        topHeader,
+        cusMask
     }
 };
 </script>
 <style lang="scss" scoped>
-
+    @import 'src/common/style/mixin';
+    
     #home {
         padding-top: 50px;
-        .category_list {
-            ul {
+    }
+    .category_list {
+        ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 15px 5px 0 5px;
+            li {
                 display: flex;
-                justify-content: space-around;
+                flex-direction: column;
                 align-items: center;
-                flex-wrap: wrap;
-                padding: 15px 5px 0 5px;
-                li {
+                justify-content: flex-start;
+                width: 20%;
+                margin-bottom: 10px;
+                img {
+                    width: 44px;
+                    height: 44px;
+                }
+                span {
+                    font-size: 14px;
+                    padding-top: 4px;
+                }
+            }
+        }
+    }
+    .near_shop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 10px 0 5px 0;
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+        &::before,
+        &::after {
+            content: "";
+            display: inline-block;
+            width: 60px;
+            height: 1px;/*px*/
+            background: #333;
+            -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+        }
+        &::before {
+            margin-right: -3px;
+        }
+        &::after {
+            margin-left: -3px;
+        }
+    }
+    .screen_group {
+        position: relative;
+        margin-bottom: 40px;
+        > ul {
+            position: absolute;
+            z-index: 100;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            background: #fff;
+            > .screen_item {
+                width: 25%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 14px;
+                line-height: 40px;
+                color: #666;
+                .iconmore {
+                    transition: all .4s;
+                }
+                .iconmore.rotate {
+                    transform: rotate(180deg);
+                }
+                > ul {
+                    position: absolute;
+                    top: 40px;
+                    left: 0;
+                    z-index: 100;
                     display: flex;
                     flex-direction: column;
-                    align-items: center;
-                    justify-content: flex-start;
-                    width: 20%;
-                    margin-bottom: 10px;
-                    img {
-                        width: 44px;
-                        height: 44px;
-                    }
-                    span {
-                        font-size: 14px;
-                        padding-top: 4px;
-                    }
-                }
-            }
-        }
-        .near_shop {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 10px 0 5px 0;
-            font-size: 18px;
-            text-align: center;
-            font-weight: bold;
-            &::before,
-            &::after {
-                content: "";
-                display: inline-block;
-                width: 60px;
-                height: 1px;/*px*/
-                background: #333;
-                -webkit-transform: scale(0.5);
-                transform: scale(0.5);
-            }
-            &::before {
-                margin-right: -3px;
-            }
-            &::after {
-                margin-left: -3px;
-            }
-        }
-        .screen_group {
-            ul {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-                border-top: 1px solid #ddd;/*px*/
-                border-bottom: 1px solid #ddd;/*px*/
-                .screen_item {
-                    width: 25%;
-                    display: flex;
+                    align-items: flex-start;
                     justify-content: center;
-                    align-items: center;
-                    font-size: 14px;
-                    line-height: 40px;
-                    color: #666;
+                    background: #fff;
+                    width: 100%;
+                    > li[data-sort] {
+                        position: relative;
+                        width: 100%;
+                        padding-left: 10px;
+                        font-size: 14px;
+                        line-height: 40px;
+                        color: #333;
+                        &:after {
+                            content: "";
+                            position: absolute;
+                            z-index: 100;
+                            left: 0;
+                            bottom: 0;
+                            @include borderBottom(100%, 1px);
+                        }
+                    }
                 }
             }
-        }
-        .shop_list {
-            padding: 15px 0;
-            min-height: calc(100vh - 120px);
-            .shop_none {
-                text-align: center;
-                p {
-                    font-size: 16px;
+            .screen_item.shaixuan {
+                > ul {
+                    width: 100%;
+                    min-height: 60vh;
+                    @include flexBox(column, flex-start);
+                    > li {
+                        position: relative;
+                        width: 100%;
+                        margin-bottom: 10px;
+                        &::after {
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            @include borderBottom
+                        }
+                        > div {
+                            @include flexBox(column, center, flex-start);
+                            padding: 0 15px;
+                            margin-bottom: 10px;
+                            .title {
+                                font-size: 12px;
+                                color: #999;
+                                line-height: 22px;
+                            }
+                            .content {
+                                width: 100%;
+                                ul {
+                                    @include flexBox(row, space-between)
+                                }
+                                li {
+                                      padding: 0 25px;
+                                      font-size: 12px;
+                                      line-height: 30px;
+                                      border: 1px solid #ccc;
+                                }
+                            }
+                        }
+                    }
+                    > li.btn-group {
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        margin-bottom: 0;
+                        @include flexBox;
+                        > div {
+                            flex: 1;
+                            display: inline-block;
+                            margin-bottom: 0;
+                            line-height: 50px;
+                            font-size: 16px;
+                            color: #333;
+                            text-align: center;
+                            
+                        }
+                        > div:last-child {
+                            background: #FFD161;
+                        }
+                    }
                 }
+            }
+           
+        }
+    }
+    .shop_list {
+        padding: 15px 0;
+        min-height: calc(100vh - 110px);
+        .shop_none {
+            text-align: center;
+            p {
+                font-size: 16px;
             }
         }
     }

@@ -1,9 +1,9 @@
-export function getOffsetTop(dom) {
+export const getOffsetTop =  function (dom) {
     if (!dom) return;
-    return dom.offsetTop + (dom.offsetParent ? getOffset(dom.offsetParent) : 0);
+    return dom.offsetTop + (dom.offsetParent ? getOffsetTop(dom.offsetParent) : 0);
 }
 
-export function getOffsetLeft(dom) {
+export const getOffsetLeft = function (dom) {
     if (!dom) return;
-    return dom.offsetLeft + (dom.offsetParent ? getOffset(dom.offsetParent) : 0);
+    return dom.offsetLeft + (dom.offsetParent ? getOffsetLeft(dom.offsetParent) : 0);
 }

@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url('./common/style/common.scss');
 @import url('./common/style/iconfont.css');
 
@@ -33,5 +33,7 @@ export default {
     /* transform: translateX(50vw); */
     opacity: 0;
 }
+
+
 
 </style>
