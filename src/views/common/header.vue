@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="head_box">
-            <div class="head_box_left">定位中</div>
+            <div :class="['head_box_left', show_location ? '' : 'no_width']">定位中</div>
             <div class="head_box_right">
                 <div>
                     <input type="text" readonly placeholder="请输入商家或商品名称">
@@ -12,10 +12,11 @@
 </template>
 <script>
 export default {
-    
+    props: ['show_location']
 }
 </script>
 <style lang="scss" scoped>
+@import "src/common/style/mixin";
 .header{
     position: fixed;
     top: 0;
@@ -28,29 +29,40 @@ export default {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        padding: 0 20px;
+        padding: 0 15px;
         height: 100%;
         .head_box_left {
-            margin-right: 20px;
+            max-width: 100px;
             font-size: 16px;
             color: #fff;
+            transition: all 0.4s ease;
+            @include ellipsis;
+            text-overflow: clip;
+        }
+        .head_box_left.no_width {
+            max-width: 0;
+            margin-right: 0;
+            text-overflow: clip;
         }
         .head_box_right {
             flex: 1;
             div {
                 position: relative;
                 width: 100%;
+                transition: all 0.4s ease;
                 input {
                     width: 100%;
                     height: 30px;
                     background: #eee;
                     border-radius: 100px;
                     text-indent: 40px;
-                    font-size: 16px;
+                    font-size: 14px;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     outline: none;
                     border: none;
+                    transition: all 0.4s ease;
+                    -webkit-font-smoothing: antialiased;
                 }
                 &:after {
                     content: '';

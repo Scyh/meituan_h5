@@ -24,3 +24,49 @@ ul {
 .iconfont {
     font-size: 16px!important;
 }
+
+.text-r {
+    text-align: right;
+}
+.text-l {
+    text-align: left;
+}
+.text-c {
+    text-align: center;
+}
+
+.font-s {
+    font-size: 12px;
+}
+
+.font-n {
+    font-size: 16px;
+}
+
+.img_meituan {
+    width: 50px;
+    height: 15px;
+    background-image: url('~src/assets/meituan.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.img_pinpai {
+    width: 26px;
+    height: 13px;
+    background-image: url('~src/assets/brand.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.img_loading {
+   width: 22px;
+   height: 22px;
+   background-image: url('~src/assets/loading.png');
+   background-repeat: no-repeat;
+   background-size: contain;
+   animation: rotate 1s infinite linear;
+   -webkit-animation: rotate 1s infinite linear;
+}
+@keyframes rotate {
+    0% { transform: rotate(0) ; -webkit-transform: rotate(0) ; -moz-transform: rotate(0) ; -ms-transform: rotate(0) ; -o-transform: rotate(0) ; }
+    100% { transform: rotate(360deg) ; -webkit-transform: rotate(360deg) ; -moz-transform: rotate(360deg) ; -ms-transform: rotate(360deg) ; -o-transform: rotate(360deg) ; }
+}

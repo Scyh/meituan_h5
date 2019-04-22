@@ -1,3 +1,4 @@
+// 伪元素
 @mixin borderBottom($width: 100%, $height: 1px, $scale: scaleY(0.5)) {
     content: "";
     display: inline-block;
@@ -9,6 +10,26 @@
     -moz-transform: $scale;
     -ms-transform: $scale;
     -o-transform: $scale;
+}
+
+@mixin borderCenter($width: 60px, $height: 1px, $bg_color: #333) {
+    content: "";
+    display: inline-block;
+    width: $width;
+    height: $height; /*px*/
+    background: $bg_color;
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+}
+
+@mixin borderBefore {
+    // &::beofre {
+        content: "";
+        width: 1px;
+        height: 6px;
+        background: #ccc;
+        display: inline-block;
+    // }
 }
 
 //单行隐藏
@@ -26,7 +47,7 @@
     }
 }
 
-// flex
+// 弹性盒子
 @mixin flexBox($direction: row, $justify: center, $align: center, $wrap: noWrap) {
     display: flex;
     flex-direction: $direction;

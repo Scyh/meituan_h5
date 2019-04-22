@@ -1,3 +1,1 @@
-export default {
-    baseUrl: 'xxx'
-}
+export const baseUrl = 'xxx'

@@ -1,15 +1,24 @@
-import axios from '../axios';
-import base from '../base'
+import Base from './baseApi'
 
 const ak = 'OPpVx7McFjtxfig7pWEdxhWe9jxnSDUQ'
 // const url = 'http://api.map.baidu.com'
-const url = '/v1';
 
-export default {
+class Location extends Base {
+    constructor(apiName) {
+        super(apiName)
+    }
 
-    getIp: () => axios.get('/v2/cityjson?it=utf-8'),
+    async getIp() {
+        return this.axios.get('/v2/cityjson?it=utf-8')
+    }
+    
+   async getLocation(ip) {
+       return this.axios.get(`${this.url}/location/ip?ak=${ak}&ip=${ip}`);
+   }
 
-    getLocation: (ip) => axios.get(`${url}/location/ip?ak=${ak}&ip=${ip}`),
-
-    getSuggess: (query, region) => axios.get(`${url}/palce/v2/suggestion?query=${query}&region=${region}&ak=${ak}&city_limit=true&output=json`),
+   async getSuggess(query, region) {
+       return this.axios.get(`${this.url}/palce/v2/suggestion?query=${query}&region=${region}&ak=${ak}&city_limit=true&output=json`);
+   }
 }
+
+export default new Location('/v1')
