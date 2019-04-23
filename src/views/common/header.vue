@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="head_box">
-            <div :class="['head_box_left', show_location ? '' : 'no_width']">定位中</div>
+            <div :class="['head_box_left', show_location ? '' : 'no_width']">{{ location ? location : "定位中.." }}</div>
             <div class="head_box_right">
                 <div>
                     <input type="text" readonly placeholder="请输入商家或商品名称">
@@ -12,7 +12,21 @@
 </template>
 <script>
 export default {
-    props: ['show_location']
+    props: ['show_location'],
+    data() {
+        return {
+            location: null,
+        }
+    },
+    created() {
+        this.getLocation();
+    },
+    methods: {
+        async getLocation() {
+            let location = await this.$apis.location.getLocation();
+            this.location = location.content.address_detail.city;
+        },
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -32,6 +46,7 @@ export default {
         padding: 0 15px;
         height: 100%;
         .head_box_left {
+            margin-right: 10px;
             max-width: 100px;
             font-size: 16px;
             color: #fff;

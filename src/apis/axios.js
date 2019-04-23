@@ -15,17 +15,22 @@ instance.interceptors.request.use(config => {
     return Promise.reject(err);
 });
 
-instance.interceptors.response.use(res => res.status === 200 ? Promise.resolve(res.data) : Promise.reject(res.data),
-    err => {
-        const { response } = err;
-        if (response) {
-            errorHandle(response.status, response.data.message);
-            return Promise.reject(response);
-        } else {
-            // 断网处理
+instance.interceptors.response.use(res => {
+    if (res.status === 200) {
+        return Promise.resolve(res.data)
+    } else {
+        return Promise.reject(res.data)
+    }
+}, err => {
+    const { response } = err;
+    if (response) {
+        errorHandle(response.status, response.data.message);
+        return Promise.reject(response);
+    } else {
+        // 断网处理
 
-        };
-    });
+    };
+});
 
 function errorHandle(status, msg) {
     switch (status) {

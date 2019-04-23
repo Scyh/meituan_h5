@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/index'
 import './plugins/element.js'
 import apis from './apis/index'
-import 'lib-flexible'
+// import 'lib-flexible'
+import './common/javascript/rem.js'
 
 Vue.config.productionTip = false
 Vue.prototype.$apis = apis

@@ -13,46 +13,52 @@
         <section ref="screen_group" :class="['screen_group', fix_to_top ? 'fixed' : '']">
             <div>
                 <ul>
-                    <li class="screen_item" @click="sort(1)">
-                        综合排序
-                        <i :class="['iconfont', 'iconmore', show_sort ? 'rotate' : '']"></i>
-                        <ul v-if="show_sort">
-                            <li data-sort="1">综合排序</li>
-                            <li data-sort="2">速度最快</li>
-                            <li data-sort="3">评分最高</li>
-                            <li data-sort="4">起送价最低</li>
-                            <li data-sort="5">配送费最低</li>
-                            <li data-sort="6">人均高到低</li>
-                            <li data-sort="7">人均低到高</li>
-                        </ul>
+                    <li :class="['screen_item', s_s.selected ? 'selected' : '']" @click="sort(10)">
+                        <!-- {{ s_s.selected ? s_s.selected : sort_list[0] }} -->
+                        {{ s_s.selected ? sort_list.includes(s_s.selected) ? sort_list[0] : s_s.selected : sort_list[0] }}
+                        <i
+                            :class="['iconfont', 'iconmore', show_sort ? 'rotate' : '']"
+                        ></i>
                     </li>
-                    <li class="screen_item" data-sort="10">销量最高</li>
-                    <li class="screen_item" data-sort="20">距离最远</li>
-                    <li class="screen_item shaixuan" @click="sort(2)">
+                    <li :class="['screen_item', s_s.other_selected === '销量最高' ? 'selected' : '' ]"
+                        @click="sort_handle('销量最高')"
+                    >销量最高</li>
+                    <li :class="['screen_item', s_s.other_selected === '距离最远' ? 'selected' : '' ]"
+                        @click="sort_handle('距离最远')"
+                    >距离最远</li>
+                    <li class="screen_item" @click="sort(40)">
                         筛选
                         <i class="iconfont iconshaixuan1"></i>
-                        <ul v-if="show_screen">
-                            <li></li>
-                            <li></li>
-                            <li>
+                    </li>
+                </ul>
+                <div class="screen_panel">
+                    <ul v-if="show_sort">
+                        <li :class="[s_s.selected === i ? 'selected' : '']" v-for="(i, idx) in sort_list" :key="idx" @click="sort_handle(i,true)" >{{i}}</li>
+                    </ul>
+                    <ul v-if="show_screen" class="shaixuan">
+                        <template v-for="(i, idx) in screen_list">
+                            <li :key="idx">
                                 <div>
-                                    <section class="title">人均价</section>
+                                    <section class="title">{{ i.title }}</section>
                                     <section class="content">
                                         <ul>
-                                            <li>20元以下</li>
-                                            <li>20-40元以下</li>
-                                            <li>40元以上</li>
+                                            <template v-for="(item, index) in i.content">
+                                                <li  :key="index" @click="screen_handle(item.text,i.title,i.multiple,index,idx)" :class="[item.class, item.selected ? 'selected' : '']">
+                                                    <i v-if="item.icon_class" :class="item.icon_class"></i>
+                                                    {{ item.text }}
+                                                </li>
+                                            </template>
                                         </ul>
                                     </section>
                                 </div>
                             </li>
-                            <li class="btn-group">
-                                <div>清除筛选</div>
-                                <div>完成</div>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                        </template>
+                        <li class="btn-group">
+                            <div @click="screen_over">清除筛选</div>
+                            <div @click="screen_over">完成</div>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
         <section class="shop_list" ref="shop_list">
@@ -79,7 +85,7 @@
 
 <script>
 import topHeader from "@/views/common/header";
-import shopItem from '@/components/shopItem/shopItem'
+import shopItem from "@/components/shopItem/shopItem";
 import cusMask from "@/components/Mask/Mask";
 import { getOffsetTop, getStyle } from "@/common/javascript/util";
 export default {
@@ -138,42 +144,130 @@ export default {
                     text: "品牌连锁"
                 }
             ],
+            sort_list: [
+                "综合排序",
+                "速度最快",
+                "评分最高",
+                "起送价最低",
+                "配送费最低",
+                "人均高到低",
+                "人均低到高"
+            ],
+            screen_list: [
+                {
+                    title: "专送",
+                    multiple: false,
+                    content: [{class: null, icon_class: null, selected: false, text: "美团专送"}]
+                },
+                {
+                    title: "商家特色(可多选)",
+                    multiple: true,
+                    content: [
+                        { class: null, icon_class: null, selected: false, text: "免费配送" },
+                        { class: null, icon_class: null, selected: false, text: "0元起送" },
+                        { class: null, icon_class: null, selected: false, text: "新商家" },
+                        { class: null, icon_class: null, selected: false, text: "品牌商家" },
+                        { class: null, icon_class: null, selected: false, text: "点评高分" },
+                        { class: null, icon_class: null, selected: false, text: "跨天预定" },
+                        { class: null, icon_class: null, selected: false, text: "支持开发票" }
+                    ]
+                },
+                {
+                    title: "人均价",
+                    multiple: false,
+                    content: [
+                        { class: null, icon_class: null, selected: false, text: "20元以下" },
+                        { class: null, icon_class: null, selected: false, text: "20-40元" },
+                        { class: null, icon_class: null, selected: false, text: "40元以上" }
+                    ]
+                },
+                {
+                    title: "优惠活动(单选)",
+                    multiple: false,
+                    content: [
+                        { class: 'discounted_item', icon_class: 'icon10', selected: false, text: "优惠商家" },
+                        { class: 'discounted_item', icon_class: 'icon11', selected: false, text: "首单立减" },
+                        { class: 'discounted_item', icon_class: 'icon12', selected: false, text: "满减优惠" },
+                        { class: 'discounted_item', icon_class: 'icon13', selected: false, text: "进店领券" },
+                        { class: 'discounted_item', icon_class: 'icon14', selected: false, text: "第二份半价" },
+                        { class: 'discounted_item', icon_class: 'icon15', selected: false, text: "满返代金券" },
+                        { class: 'discounted_item', icon_class: 'icon16', selected: false, text: "折扣商品" },
+                        { class: 'discounted_item', icon_class: 'icon17', selected: false, text: "提前下单优惠" },
+                        { class: 'discounted_item', icon_class: 'icon18', selected: false, text: "满赠活动" },
+                        { class: 'discounted_item', icon_class: 'icon19', selected: false, text: "门店新客立减" },
+                    ]
+                }
+            ],
             show_location: true,
-            shop_list: [1,1,1,1,1,1,1,1,1],
-            show_sort: false,
-            show_screen: false,
-            show_mask: false,
+            shop_list: [1, 1, 1, 1, 1, 1, 1, 1, 1],
+            show_sort: false, // 综合排序
+            show_screen: false, // 筛选
+            show_mask: false, // 显示遮罩层
             offset_top: 0,
             fix_to_top: false,
-            show_loading: false
+            show_loading: false,
+            s_s: {
+                selected: "",
+                screen: [],
+            }
         };
+    },
+    created() {},
+    computed: {
+        shaixuan() {
+            return this.s_s.screen.length;
+        }
     },
     mounted() {
         this.listen_scroll();
     },
     destoryed() {
-        window.removeEventListener('scroll');
+        window.removeEventListener("scroll");
     },
     methods: {
         // 获取店家数据
         async getShop(sort_type) {
             sort_type = sort_type || 0;
-            let shops = await this.$apis.shop.getList(sort_type)
+            return await this.$apis.shop.getList(sort_type);
         },
-        
-        // 综合排序
+
+        // 综合排序和筛选框显示
         sort(num) {
             let offsetTop = getOffsetTop(this.$refs.shop_list);
             window.scrollTo(0, offsetTop);
-            this.closeMask();
-            if (num === 1) {
-                this.show_screen = false;
+            if (num === 10) {
                 this.show_sort = !this.show_sort;
-            } else if (num === 2) {
-                this.show_sort = false;
+                this.show_mask = this.show_sort;
+                this.show_screen = false;
+            } else if (num === 40) {
                 this.show_screen = !this.show_screen;
+                this.show_mask = this.show_screen;
+                this.show_sort = false;
+            } else {
+                this.s_s.selected = num;
+                this.closeMask();
             }
-            this.show_mask = !this.show_mask;
+        },
+
+        screen_handle(type, category, multiple, type_idx, category_index) {
+            if (!multiple) {
+                this.screen_list[category_index].content.forEach(item => {
+                    let i = this.s_s.screen.indexOf(item.text);
+                    if (i > -1) { this.s_s.screen.splice(i, 1); }
+                    item.selected = false;
+                });
+            }
+            this.screen_list[category_index].content[type_idx].selected = true;
+            !this.s_s.screen.includes(type) && this.s_s.screen.push(type);
+        },
+
+        screen_over() {
+            this.closeMask();
+            this.screen_list.forEach(i => {
+                i.content.forEach(item => {
+                    item.selected = false;
+                })
+            })
         },
 
         closeMask() {
@@ -185,11 +279,11 @@ export default {
         listen_scroll(ev) {
             this.offset_top = getOffsetTop(this.$refs.screen_group);
             window.addEventListener("scroll", ev => {
-                    if(document.documentElement.scrollTop  > (this.offset_top - getStyle(this.$refs.top_header, 'height'))) {
+                    if ( document.documentElement.scrollTop >= (this.offset_top - getStyle(this.$refs.top_header, "height"))) {
                         this.fix_to_top = true;
                         this.show_location = false;
                     } else {
-                        this.fix_to_top = false
+                        this.fix_to_top = false;
                         this.show_location = true;
                     }
                 },
@@ -258,48 +352,60 @@ export default {
     width: 100%;
     > div {
         position: relative;
-        width: 100%;
-        height: 40px;
-        > ul {
-        position: absolute;
         z-index: 100;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
         width: 100%;
         background: #fff;
-        > .screen_item {
-            width: 25%;
+        > ul {
+            position: absolute;
+            z-index: 101;
             display: flex;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-            font-size: 14px;
-            line-height: 40px;
-            color: #666;
-            .iconmore {
-                transition: all 0.4s;
-            }
-            .iconmore.rotate {
-                transform: rotate(180deg);
-            }
-            > ul {
+            width: 100%;
+            background: #fff;
+            &::before,
+            &::after {
                 position: absolute;
-                top: 40px;
                 left: 0;
-                z-index: 100;
+                @include borderBottom
+            }
+            &::before { top: 0 };
+            &::after { bottom: 0 }
+            > .screen_item {
+                width: 25%;
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
                 justify-content: center;
-                background: #fff;
+                align-items: center;
+                font-size: 14px;
+                line-height: 40px;
+                color: #666;
+                .iconmore {
+                    transition: all 0.4s;
+                }
+                .iconmore.rotate {
+                    transform: rotate(180deg);
+                }
+            }
+            > .screen_item.selected {
+                color: 333;
+                font-weight: 600;
+            }
+            
+        }
+        > .screen_panel {
+            padding-top: 40px;
+            ul {
                 width: 100%;
-                > li[data-sort] {
+                @include flexBox(column, center, flex-start);
+                background: #fff;
+                > li {
                     position: relative;
                     width: 100%;
                     padding-left: 10px;
                     font-size: 14px;
                     line-height: 40px;
                     color: #333;
+                    font-weight: normal;
                     &:after {
                         content: "";
                         position: absolute;
@@ -309,12 +415,17 @@ export default {
                         @include borderBottom(100%, 1px);
                     }
                 }
+                > li.selected {
+                    color: #ffb000;
+                    font-weight: 600;
+                }
             }
-        }
-        .screen_item.shaixuan {
-            > ul {
+            > ul.shaixuan {
                 width: 100%;
-                min-height: 60vh;
+                max-height: 400px;
+                padding-bottom: 50px;
+                overflow-x: hidden;
+                overflow-y: scroll;
                 @include flexBox(column, flex-start);
                 > li {
                     position: relative;
@@ -338,13 +449,21 @@ export default {
                         .content {
                             width: 100%;
                             ul {
-                                @include flexBox(row, space-between);
+                                @include flexBox(row,space-between,center,wrap);
                             }
                             li {
-                                padding: 0 25px;
+                                width: 30%;
+                                margin-bottom: 10px;
+                                padding: 0;
+                                text-align: center;
                                 font-size: 12px;
                                 line-height: 30px;
                                 border: 1px solid #ccc;
+                            }
+                            li.discounted_item {
+                                width: 50%;
+                                text-align: left;
+                                border: none;
                             }
                         }
                     }
@@ -353,7 +472,9 @@ export default {
                     position: absolute;
                     left: 0;
                     bottom: 0;
+                    z-index: 100;
                     margin-bottom: 0;
+                    background: #fff;
                     @include flexBox;
                     > div {
                         flex: 1;
@@ -370,7 +491,7 @@ export default {
                 }
             }
         }
-    }
+        
     }
 }
 .screen_group.fixed {
@@ -378,6 +499,8 @@ export default {
     top: 50px;
     left: 0;
     z-index: 100;
+    > div {
+    }
 }
 .shop_list {
     padding: 15px 0;
@@ -407,4 +530,3 @@ export default {
     margin-top: 40px;
 }
 </style>
-

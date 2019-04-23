@@ -5,20 +5,23 @@ const ak = 'OPpVx7McFjtxfig7pWEdxhWe9jxnSDUQ'
 
 class Location extends Base {
     constructor(apiName) {
-        super(apiName)
+        super();
+        this.url = apiName
     }
 
     async getIp() {
-        return this.axios.get('/v2/cityjson?it=utf-8')
+        let ip = await this.axios.get('/v2/cityjson?it=utf-8');
+        return /(\d+.\d+.\d+.\d+)/.test(ip) ? RegExp.$1 : false
     }
-    
-   async getLocation(ip) {
-       return this.axios.get(`${this.url}/location/ip?ak=${ak}&ip=${ip}`);
-   }
 
-   async getSuggess(query, region) {
-       return this.axios.get(`${this.url}/palce/v2/suggestion?query=${query}&region=${region}&ak=${ak}&city_limit=true&output=json`);
-   }
+    async getLocation() {
+        let ip = await this.getIp();
+        return this.axios.get(`${this.url}/location/ip?ak=${ak}&ip=${ip}`);
+    }
+
+    async getSuggess(query, region) {
+        return this.axios.get(`${this.url}/palce/v2/suggestion?query=${query}&region=${region}&ak=${ak}&city_limit=true&output=json`);
+    }
 }
 
 export default new Location('/v1')

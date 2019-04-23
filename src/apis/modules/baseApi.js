@@ -8,9 +8,11 @@ class Base {
 
     async get(page, pageSize, searchObj) {
         return await this.axios.get(this.url, {
-            page,
-            pageSize,
-            ...searchObj
+            params: {
+                page,
+                pageSize,
+                ...searchObj
+            }
         });
     }
 
