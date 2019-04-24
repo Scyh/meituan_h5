@@ -7,6 +7,9 @@ import apis from './apis/index'
 // import 'lib-flexible'
 import './common/javascript/rem.js'
 
+import cconfirm from './components/common/confirm.vue'
+Vue.component('cconfirm', cconfirm)
+
 Vue.config.productionTip = false
 Vue.prototype.$apis = apis
 

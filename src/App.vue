@@ -18,7 +18,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('./common/style/common.scss');
 @import url('./common/style/iconfont.css');
 
 .slide-enter-active,

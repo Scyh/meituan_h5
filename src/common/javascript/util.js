@@ -1,9 +1,9 @@
-export const getOffsetTop =  function (dom) {
+export const getOffsetTop =  (dom) => {
     if (!dom) return;
     return dom.offsetTop + (dom.offsetParent ? getOffsetTop(dom.offsetParent) : 0);
 }
 
-export const getStyle = function(dom, attr) {
+export const getStyle = (dom, attr) => {
     if (!dom) return;
     dom = dom._uid ? dom._vnode.elm : dom
     let style = null;
@@ -15,4 +15,25 @@ export const getStyle = function(dom, attr) {
     }
     
     return /(px|pt|rem|em)$/.test(style) ? parseFloat(style) : style
+}
+
+export const Store = {
+    set(key, val) {
+        if (!key || !val) return;
+        if (typeof val !== 'string') {
+            val = JSON.stringify(val);
+        }
+        localStorage.setItem(key, val);
+    },
+    get(key) {
+        if (!key) return;
+        localStorage.getItem(key);
+    },
+    remove(key) {
+        if (!key) return;
+        localStorage.removeStore(key);
+    },
+    clear() {
+        localStorage.clear();
+    }
 }

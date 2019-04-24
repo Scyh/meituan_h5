@@ -1,6 +1,6 @@
 <template>
     <div id="home">
-        <top-header ref="top_header" :show_location="show_location"></top-header>
+        <common-header ref="top_header" :show_location="show_location"></common-header>
         <section class="category_list">
             <ul>
                 <li v-for="(i, idx) in category_list" :key="idx">
@@ -13,27 +13,27 @@
         <section ref="screen_group" :class="['screen_group', fix_to_top ? 'fixed' : '']">
             <div>
                 <ul>
-                    <li :class="['screen_item', s_s.selected ? 'selected' : '']" @click="sort(10)">
-                        <!-- {{ s_s.selected ? s_s.selected : sort_list[0] }} -->
-                        {{ s_s.selected ? sort_list.includes(s_s.selected) ? sort_list[0] : s_s.selected : sort_list[0] }}
+                    <li :class="['screen_item', sort_list.includes(s_s.selected) ? 'selected' : '']" @click="sort(10)">
+                        {{ sort_list.includes(s_s.selected) ? s_s.selected : sort_list[0] }}
                         <i
                             :class="['iconfont', 'iconmore', show_sort ? 'rotate' : '']"
                         ></i>
                     </li>
-                    <li :class="['screen_item', s_s.other_selected === '销量最高' ? 'selected' : '' ]"
-                        @click="sort_handle('销量最高')"
+                    <li :class="['screen_item', s_s.selected === '销量最高' ? 'selected' : '' ]"
+                        @click="sort('销量最高')"
                     >销量最高</li>
-                    <li :class="['screen_item', s_s.other_selected === '距离最远' ? 'selected' : '' ]"
-                        @click="sort_handle('距离最远')"
+                    <li :class="['screen_item', s_s.selected === '距离最远' ? 'selected' : '' ]"
+                        @click="sort('距离最远')"
                     >距离最远</li>
                     <li class="screen_item" @click="sort(40)">
                         筛选
-                        <i class="iconfont iconshaixuan1"></i>
+                        <i v-if="s_s.show_screen_count" class="screen_count">{{ s_s.screen.length }}</i>
+                        <i v-else class="iconfont iconshaixuan1"></i>
                     </li>
                 </ul>
                 <div class="screen_panel">
                     <ul v-if="show_sort">
-                        <li :class="[s_s.selected === i ? 'selected' : '']" v-for="(i, idx) in sort_list" :key="idx" @click="sort_handle(i,true)" >{{i}}</li>
+                        <li :class="[s_s.selected === i ? 'selected' : '']" v-for="(i, idx) in sort_list" :key="idx" @click="sort(i,true)" >{{i}}</li>
                     </ul>
                     <ul v-if="show_screen" class="shaixuan">
                         <template v-for="(i, idx) in screen_list">
@@ -54,14 +54,14 @@
                             </li>
                         </template>
                         <li class="btn-group">
-                            <div @click="screen_over">清除筛选</div>
-                            <div @click="screen_over">完成</div>
+                            <div @click="screen_over(false)">清除筛选</div>
+                            <div @click="screen_over(true)">完成<i v-if="s_s.screen.length>0" class="screen_count">{{s_s.screen.length}}</i></div>
                         </li>
                     </ul>
                 </div>
             </div>
         </section>
-        <section class="shop_list" ref="shop_list">
+        <section class="shop_list" ref="shop_list" v-load-more="load_more_handle">
             <template v-if="!shop_list || shop_list.length <= 0">
                 <div class="shop_none">
                     <i class="iconempty"></i>
@@ -79,15 +79,18 @@
                 </div>
             </template>
         </section>
+        <common-footer :selected="1"></common-footer>
         <cus-mask :show="show_mask" @close="closeMask"></cus-mask>
     </div>
 </template>
 
 <script>
-import topHeader from "@/views/common/header";
+import commonHeader from "@/components/common/header";
+import commonFooter from "@/components/common/footer";
 import shopItem from "@/components/shopItem/shopItem";
 import cusMask from "@/components/Mask/Mask";
 import { getOffsetTop, getStyle } from "@/common/javascript/util";
+import { loadMore } from '@/components/mixin.js'
 export default {
     name: "home",
     data() {
@@ -199,24 +202,19 @@ export default {
                 }
             ],
             show_location: true,
-            shop_list: [1, 1, 1, 1, 1, 1, 1, 1, 1],
+            shop_list: [1, 1, 1, 1,1,1,1,1,1],
             show_sort: false, // 综合排序
             show_screen: false, // 筛选
             show_mask: false, // 显示遮罩层
             offset_top: 0,
             fix_to_top: false,
-            show_loading: false,
+            show_loading: true,
             s_s: {
                 selected: "",
                 screen: [],
+                show_screen_count: false
             }
         };
-    },
-    created() {},
-    computed: {
-        shaixuan() {
-            return this.s_s.screen.length;
-        }
     },
     mounted() {
         this.listen_scroll();
@@ -252,22 +250,37 @@ export default {
         screen_handle(type, category, multiple, type_idx, category_index) {
             if (!multiple) {
                 this.screen_list[category_index].content.forEach(item => {
-                    let i = this.s_s.screen.indexOf(item.text);
-                    if (i > -1) { this.s_s.screen.splice(i, 1); }
-                    item.selected = false;
+                    if (item.text !== type) {
+                        let i = this.s_s.screen.indexOf(item.text);
+                        if (i > -1) { this.s_s.screen.splice(i, 1); }
+                        item.selected = false;
+                    }
                 });
             }
-            this.screen_list[category_index].content[type_idx].selected = true;
-            !this.s_s.screen.includes(type) && this.s_s.screen.push(type);
+            if (this.s_s.screen.includes(type)) {
+                this.screen_list[category_index].content[type_idx].selected = false;
+                this.s_s.screen.splice(this.s_s.screen.indexOf(type), 1)
+            } else {
+                this.screen_list[category_index].content[type_idx].selected = true;
+                this.s_s.screen.push(type);
+            }
+            
+            
         },
 
-        screen_over() {
+        screen_over(flag) {
             this.closeMask();
-            this.screen_list.forEach(i => {
-                i.content.forEach(item => {
-                    item.selected = false;
+            if (flag) {
+                this.s_s.show_screen_count = true;
+            } else {
+                this.s_s.show_screen_count = false;
+                this.s_s.screen = [];
+                this.screen_list.forEach(i => {
+                    i.content.forEach(item => {
+                        item.selected = false;
+                    })
                 })
-            })
+            }
         },
 
         closeMask() {
@@ -286,13 +299,21 @@ export default {
                         this.fix_to_top = false;
                         this.show_location = true;
                     }
-                },
-                false
-            );
+                }, false);
+        },
+
+        load_more_handle() {
+            let that = this;
+            let temp = JSON.parse(JSON.stringify(that.shop_list)).slice(0, 10)
+            that.shop_list = [...that.shop_list, ...temp];
+            console.log(that.shop_list.length)
+            return true;
         }
     },
+    mixins: [loadMore],
     components: {
-        topHeader,
+        commonHeader,
+        commonFooter,
         cusMask,
         shopItem
     }
@@ -372,6 +393,7 @@ export default {
             &::before { top: 0 };
             &::after { bottom: 0 }
             > .screen_item {
+                position: relative;
                 width: 25%;
                 display: flex;
                 justify-content: center;
@@ -384,6 +406,18 @@ export default {
                 }
                 .iconmore.rotate {
                     transform: rotate(180deg);
+                }
+                .screen_count {
+                    width: 15px;
+                    height: 15px;
+                    font-size: 12px;
+                    color: #fff;
+                    line-height: 15px;
+                    text-align: center;
+                    font-weight: 600;
+                    background: #000;
+                    border-radius: 50%;
+                    font-style: normal;
                 }
             }
             > .screen_item.selected {
@@ -487,6 +521,20 @@ export default {
                     }
                     > div:last-child {
                         background: #ffd161;
+                        @include flexBox;
+                    }
+                    .screen_count {
+                        display: inline-block;
+                        width: 15px;
+                        height: 15px;
+                        font-size: 12px;
+                        color: #fff;
+                        line-height: 15px;
+                        text-align: center;
+                        font-weight: 600;
+                        background: #000;
+                        border-radius: 50%;
+                        font-style: normal;
                     }
                 }
             }
@@ -499,10 +547,9 @@ export default {
     top: 50px;
     left: 0;
     z-index: 100;
-    > div {
-    }
 }
 .shop_list {
+    margin-bottom: 40px;
     padding: 15px 0;
     min-height: calc(100vh - 110px);
     .shop_none {
@@ -513,6 +560,9 @@ export default {
     }
     .loading-box {
         @include flexBox(column, center, center);
+        p {
+            font-size: 14px;
+        }
     }
     .shop_no_more {
         @include flexBox;
