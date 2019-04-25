@@ -29,7 +29,7 @@ export default {
 }
 .slide-enter,
 .slide-leave-to {
-    /* transform: translateX(50vw); */
+    transform: translateX(50vw);
     opacity: 0;
 }
 

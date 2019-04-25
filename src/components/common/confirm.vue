@@ -1,7 +1,6 @@
 <template>
-<transition name="scale" key="main">
-    <div id="common_confirm" v-show="show" >
-        
+    <transition-group name="scale">
+        <div id="common_confirm" v-show="show_box" key="1">
             <div class="confirm_box">
                 <div class="confirm_body">{{message}}</div>
                 <div class="confirm_footer">
@@ -9,12 +8,9 @@
                     <div @click="confirm" class="confirm_confirm">{{confirm_msg}}</div>
                 </div>
             </div>
-        
-        <!-- <transition name="scale" key="mask">
-            <div class="confirm_mask" v-show="show"></div>
-        </transition> -->
-    </div>
-    </transition>
+        </div>
+        <div class="confirm_mask" key="2" v-show="show_mask"></div>
+    </transition-group>
 </template>
 <script>
 export default {
@@ -35,17 +31,24 @@ export default {
     },
     data() {
         return {
-            show: false,
+            show_box: false,
+            show_mask: false
         }
     },
     methods: {
+        show() {
+            this.show_box = true;
+            this.show_mask = true;
+        },
         cancel() {
             this.$emit('cancle');
-            this.show = false;
+            this.show_box = false;
+            this.show_mask = false;
         },
         confirm() {
             this.$emit('confirm');
-            this.show = false;
+            this.show_box = false;
+            this.show_mask = false;
         },
     }
 }
@@ -53,25 +56,35 @@ export default {
 <style lang="scss" scoped>
 .scale-enter-active,
 .scale-leave-active {
-    transition: all .4s;
+    transition: all .2s;
+}
+.scale-leave-active.confirm_mask {
+    transition-delay: .2s;
+    transition: all .1s;
 }
 .scale-leave-active {
     position: absolute;
 }
-.scale-enter,
-.scale-leave-to {
+.scale-enter#common_confirm,
+.scale-leave-to#common_confirm {
     transform: scale(0.3);
+    opacity: 0.3;
+}
+
+.scale-leave-to.confirm_mask {
+    transform: scale(0);
+    opacity: 0;
 }
 #common_confirm {
+    position: absolute;
+    top: 10vh;
+    left: calc(50% - 150px);
+    z-index: 102;
+    width: 300px;
+    background: #fff;
+    border-radius: 10px;
     .confirm_box {
-        position: absolute;
-        top: 10vh;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 102;
-        width: 300px;
-        background: #fff;
-        border-radius: 10px;
+        
         .confirm_body {
             padding: 25px;
             text-align: center;
@@ -99,7 +112,8 @@ export default {
             }
         }
     }
-    .confirm_mask {
+}
+.confirm_mask {
         position: fixed;
         top: 0;
         right: 0;
@@ -108,6 +122,5 @@ export default {
         z-index: 100;
         background: rgba(0, 0, 0, .4);
     }
-}
 </style>
 

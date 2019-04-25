@@ -23,17 +23,17 @@ export const Store = {
         if (typeof val !== 'string') {
             val = JSON.stringify(val);
         }
-        localStorage.setItem(key, val);
+        window.localStorage.setItem(key, val);
     },
     get(key) {
         if (!key) return;
-        localStorage.getItem(key);
+        return window.localStorage.getItem(key);
     },
     remove(key) {
         if (!key) return;
-        localStorage.removeStore(key);
+        window.localStorage.removeItem(key);
     },
     clear() {
-        localStorage.clear();
+        window.localStorage.clear();
     }
 }

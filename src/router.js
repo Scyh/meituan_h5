@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
     routes: [
         {
             path: '/',
@@ -20,12 +20,48 @@ export default new Router({
             component: () => import(/* webpackChunkName: "search" */ '@/views/Search/Search.vue')
         },
         {
-            path: '/about',
-            name: 'about',
-            // route level code-splitting
-            // this generates a separate chunk (about.[hash].js) for this route
-            // which is lazy-loaded when the route is visited.
-            component: () => import(/* webpackChunkName: "about" */ '@/views/About/About.vue')
+            path: '/login',
+            name: 'login',
+            component: () => import(/* webpackChunkName: "login" */ '@/views/Login/Login'),
+        },
+        {
+            path: '/order',
+            name: 'order',
+            component: () => import(/* webpackChunkName: "order" */ '@/views/Order/Order'),
+            meta: { login: true }
+        },
+        {
+            path: '/self',
+            name: 'self',
+            component: () => import(/* webpackChunkName: "self" */ '@/views/Self/Self'),
+            meta: { login: true },
+            children: [
+                
+            ]
         }
     ]
+});
+
+router.beforeEach((to, from, next) => {
+    let $store = router && router.app.$store;
+    if ($store) {
+        if (to.meta.login) {    // 需要验证登录
+            $store.commit('set_last_route', to.fullPath);
+            if ($store.getters.hasLogin) {  // 已经登录，跳转回页面
+                next()
+            } else {    // 未登录，跳转登录页面，记录当前路由
+                next({ path: '/login' });
+            }
+        } else {    // 不需要登录，验证是否是登录页面
+            if (to.name === 'login' && $store.getters.hasLogin) {
+                next({ path: '/home' });
+            } else {
+                next();
+            }
+        }
+    } else {
+        next();
+    }
 })
+
+export default router

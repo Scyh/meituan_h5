@@ -1,15 +1,15 @@
 <template>
     <footer class="footer">
         <section>
-            <div class="footer-item">
+            <router-link to="/home" tag="div" class="footer-item">
                 <i :class="['img_index', selected === 1 ? 'selected' : '']"></i><span>首页</span>
-            </div>
-            <div class="footer-item">
+            </router-link>
+            <router-link to="/order" tag="div" class="footer-item">
                 <i :class="['img_order', selected === 2 ? 'selected' : '']"></i><span>订单</span>
-            </div>
-            <div class="footer-item">
+            </router-link>
+            <router-link to="/self" tag="div" class="footer-item">
                 <i :class="['img_self', selected === 3 ? 'selected' : '']"></i><span>我的</span>
-            </div>
+            </router-link>
         </section>
     </footer>
 </template>

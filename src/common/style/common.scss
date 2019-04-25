@@ -1,4 +1,4 @@
-html, body, ul, li, h1, h2, h3, h4, h5 {
+html, body, ul, li, h1, h2, h3, h4, h5, p {
     margin: 0;
     padding: 0;
 }
@@ -121,6 +121,19 @@ input {
     0% { transform: rotate(0) ; -webkit-transform: rotate(0) ; -moz-transform: rotate(0) ; -ms-transform: rotate(0) ; -o-transform: rotate(0) ; }
     100% { transform: rotate(360deg) ; -webkit-transform: rotate(360deg) ; -moz-transform: rotate(360deg) ; -ms-transform: rotate(360deg) ; -o-transform: rotate(360deg) ; }
 }
+.img_jian {
+    display: inline-block;
+    @include bg_img(14px, 14px, '~src/assets/meituan_jian.png');
+}
+.img_zhe {
+    display: inline-block;
+    @include bg_img(14px, 14px, '~src/assets/meituan_zhe.png');
+}
+.img_shop {
+    display: inline-block;
+    @include bg_img(15px, 15px, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAeCAMAAABzP0xhAAAATlBMVEUAAACYmJiZmZmenp6YmJiZmZmXl5eYmJiZmZmampqYmJiZmZmYmJifn5+Xl5elpaWXl5eYmJiXl5eYmJiZmZmZmZmYmJiYmJiampqXl5dL8o3kAAAAGXRSTlMA0ksi8S3eolVG5X1kEuwKy7XDjDoy1pddTgLWHgAAAQNJREFUOMvNkVuOwyAMRQ0l5l0gr/buf6MDSSdqpYSR5qtHyLasI4wMvTB6VfhArdrQO3bFKaukAw84v0T6IC7eAf7NmRKdkKbDskCgCwJgqSHwoEseEPtFKl5LUcFurqYOepuTYXqSQa7RYe5JM1yNCkNPGqC+UEJbvKYuBZ6EsykzFwrMbCnznUcy7EYOVJhzsk6QBu5QgKu5nbtRrdDT1tpriiOAYFDrNFZLUrVQUioATAAwtq9dGJKiXNp6baox2mF7sowkwQttiCpdICHov9Lt+bz9JU2oTH3JA1oDvispzEQzVE8aIPbGcCKF245BbinDvBrhkAo6lN8hApeINvgHEuwbFtZWad4AAAAASUVORK5CYII=');
+}
+
 
 .f_l {
     float: left;
@@ -128,3 +141,7 @@ input {
 .f_r {
     float: right;
 }
+
+
+/* 全局变量 */
+$global_color: #ffd300;

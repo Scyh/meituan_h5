@@ -56,3 +56,15 @@ export const loadMore = {
         }
     }
 }
+
+export const back = {
+    methods: {
+        back() {
+            if (window.history.length <= 1) {
+                this.$router.push('/');
+            } else {
+                this.$router.back(-1)
+            }
+        }
+    }
+}
