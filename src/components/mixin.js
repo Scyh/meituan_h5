@@ -1,4 +1,4 @@
-import { getStyle } from '@/common/javascript/util'
+import { getStyle, getScrollTop } from '@/common/javascript/util'
 
 export const loadMore = {
     directives: {
@@ -26,10 +26,10 @@ export const loadMore = {
                     moveEnd();
                 }, false);
                 const loadMore = async function() {
-                    // console.log('flag: ', flag, '判断一: ', (scrollEl.scrollTop + windowH) >= (height - distanceH),  '判断二: ', lastScrollTop, (scrollEl.scrollTop - distanceH))
+                    // console.log('flag: ', flag, '判断一: ', (getScrollTop() + windowH) >= (height - distanceH),  '判断二: ', lastScrollTop, (getScrollTop() - distanceH))
 
                     // 判断元素是否已经滚动到底部
-                    if ((scrollEl.scrollTop + windowH) >= (height - distanceH) &&　(!lastScrollTop || lastScrollTop <= scrollEl.scrollTop)) {
+                    if ((getScrollTop() + windowH) >= (height - distanceH) &&　(!lastScrollTop || lastScrollTop <= getScrollTop())) {
                         if (flag) {
                             flag = false;
                             await Promise.resolve(bind.value())
@@ -41,9 +41,10 @@ export const loadMore = {
 
                 // 防止页面滚动，touchend 事件已经触发后，页面才滚动到底部
                 const moveEnd = () => {
+                    let scrollTop = getScrollTop()
                     requestFram = requestAnimationFrame(() => {
-                        if (lastScrollTop != scrollEl.scrollTop) {
-                            lastScrollTop = scrollEl.scrollTop;
+                        if (lastScrollTop != scrollTop) {
+                            lastScrollTop = scrollTop;
                             moveEnd();
                         } else {
                             cancelAnimationFrame(requestFram);

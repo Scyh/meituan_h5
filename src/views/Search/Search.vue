@@ -58,12 +58,9 @@
                         </div>
                     </li>
                 </template>
-        
             </ul>
         </section>
-        
         <cconfirm ref="confirm" :message="'确认清空历史搜索？'" @confirm="clear"></cconfirm>
-        
     </div>
 </template>
 <script>

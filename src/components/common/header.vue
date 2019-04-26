@@ -1,7 +1,7 @@
 <template>
     <header class="header">
         <div class="head_box">
-            <div :class="['head_box_left', show_location ? '' : 'no_width']">{{ location ? location : "定位中.." }}</div>
+            <router-link to="/location"  :class="['head_box_left', show_location ? '' : 'no_width']" tag="div">{{ location ? location : "定位中.." }}</router-link>
             <div class="head_box_right">
                 <router-link to="/search" tag="div">
                     <input type="text" readonly placeholder="请输入商家或商品名称">

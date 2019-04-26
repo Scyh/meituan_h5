@@ -35,13 +35,21 @@ const router = new Router({
             name: 'self',
             component: () => import(/* webpackChunkName: "self" */ '@/views/Self/Self'),
             meta: { login: true },
-            children: [
-                
-            ]
+        },
+        {
+            path: '/agreement',
+            name: 'agreement',
+            component: () => import(/* webpackChunkName: "agreement" */ '@/views/Agreement/Agreement')
+        },
+        {
+            path: '/location',
+            name: 'location',
+            component: () => import(/* webpackChunkName: "location" */ '@/views/Location/Location')
         }
     ]
 });
 
+// 登录拦截
 router.beforeEach((to, from, next) => {
     let $store = router && router.app.$store;
     if ($store) {

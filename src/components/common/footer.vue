@@ -35,6 +35,7 @@ export default {
     left: 0;
     width: 100%;
     background: #fafafa;
+    z-index: 110;
     > section {
         width: 100%;
         @include flexBox(row, space-around, align);

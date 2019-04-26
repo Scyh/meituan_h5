@@ -289,17 +289,25 @@ export default {
             this.show_mask = false;
         },
 
+        /**
+         * 
+         *  移动端
+         *  滚动条 和 距离
+         *  判断有问题！！！
+         * 
+         */
+
         listen_scroll(ev) {
             this.offset_top = getOffsetTop(this.$refs.screen_group);
             window.addEventListener("scroll", ev => {
-                    if ( document.documentElement.scrollTop >= (this.offset_top - getStyle(this.$refs.top_header, "height"))) {
-                        this.fix_to_top = true;
-                        this.show_location = false;
-                    } else {
-                        this.fix_to_top = false;
-                        this.show_location = true;
-                    }
-                }, false);
+                if (Math.max(document.documentElement.scrollTop, document.body.scrollTop) >= (this.offset_top - getStyle(this.$refs.top_header, "height"))) {
+                    this.fix_to_top = true;
+                    this.show_location = false;
+                } else {
+                    this.fix_to_top = false;
+                    this.show_location = true;
+                }
+            }, false);
         },
 
         load_more_handle() {

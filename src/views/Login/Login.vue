@@ -17,7 +17,9 @@
                     <div :class="{ 'enabled': can_get_code && can_login }" @click="login">登录</div>
                 </section>
             </div>
-            <div class="login_box_footer"></div>
+            <div class="login_box_footer">
+                <router-link to="/agreement">查看美团协议与说明</router-link>
+            </div>
         </div>
     </div>
 </template>
@@ -79,9 +81,6 @@ export default {
                         font-size: 16px;
                         color: #333;
                     }
-                    input::-webkit-input-placeholder {
-                        color: #ccc;
-                    }
                     span {
                         position: absolute;
                         top: 5px;
@@ -116,7 +115,19 @@ export default {
                     }
                 }
             }
-            .login_box_footer {}
+            .login_box_footer {
+                position: fixed;
+                bottom: 80px;
+                left: 50%;
+                transform: translateX(-50%);
+                @include flexBox;
+                a {
+                    color: #999;
+                    font-size: 14px;
+                    text-decoration: underline;
+                }
+                
+            }
         }
     }
 </style>

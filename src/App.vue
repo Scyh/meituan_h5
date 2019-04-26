@@ -25,11 +25,11 @@ export default {
     transition: all .4s;
 }
 .slide-leave-active {
-    position: absolute;
+    // position: absolute;
 }
 .slide-enter,
 .slide-leave-to {
-    transform: translateX(50vw);
+    // transform: translateX(50vw);
     opacity: 0;
 }
 

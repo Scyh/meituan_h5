@@ -1,3 +1,7 @@
+export const getScrollTop = () => {
+    return Math.max(document.documentElement.scrollTop, document.body.scrollTop);
+}
+
 export const getOffsetTop =  (dom) => {
     if (!dom) return;
     return dom.offsetTop + (dom.offsetParent ? getOffsetTop(dom.offsetParent) : 0);
