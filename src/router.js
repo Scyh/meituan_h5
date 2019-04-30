@@ -12,6 +12,9 @@ const router = new Router({
         {
             path: '/home',  // 首页
             name: 'home',
+            meta: {
+                scroll: true
+            },
             component: () => import(/* webpackChunkName: "home" */ '@/views/Home/Home.vue')
         },
         {
@@ -20,33 +23,49 @@ const router = new Router({
             component: () => import(/* webpackChunkName: "search" */ '@/views/Search/Search.vue')
         },
         {
-            path: '/login',
+            path: '/login',     // 登录
             name: 'login',
             component: () => import(/* webpackChunkName: "login" */ '@/views/Login/Login'),
         },
         {
-            path: '/order',
+            path: '/order',     // 订单列表
             name: 'order',
-            component: () => import(/* webpackChunkName: "order" */ '@/views/Order/Order'),
-            meta: { login: true }
+            meta: { login: true, scroll: true },
+            component: () => import(/* webpackChunkName: "order" */ '@/views/Order/Order')
         },
         {
-            path: '/self',
+            path: '/order_info',    // 订单详情
+            name: 'order_info',
+            meta: { login: true, scroll: true },
+            component: () => import(/* webpackChunkName: "order_info" */ '@/views/OrderInfo/OrderInfo')
+        },
+        {
+            path: '/self',      // 个人主页
             name: 'self',
             component: () => import(/* webpackChunkName: "self" */ '@/views/Self/Self'),
             meta: { login: true },
         },
         {
-            path: '/agreement',
+            path: '/agreement', // 美团协议
             name: 'agreement',
             component: () => import(/* webpackChunkName: "agreement" */ '@/views/Agreement/Agreement')
         },
         {
-            path: '/location',
+            path: '/location',  // 定位
             name: 'location',
             component: () => import(/* webpackChunkName: "location" */ '@/views/Location/Location')
+        },
+        {
+            path: '/select_city',  // 选择城市
+            name: 'select_city',
+            component: () => import(/* webpackChunkName: "location" */ '@/views/SelectCity/SelectCity')
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        if(to.meta.scroll) {
+            return { x: 0, y: 0 }
+        }
+    }
 });
 
 // 登录拦截

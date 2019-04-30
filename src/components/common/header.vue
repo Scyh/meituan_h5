@@ -19,12 +19,13 @@ export default {
         }
     },
     created() {
-        this.getLocation();
+        this.location = this.$store.state.location ? this.$store.state.location : this.getLocation();
     },
     methods: {
         async getLocation() {
             let location = await this.$apis.location.getLocation();
-            this.location = location.content.address_detail.city;
+            return location
+            // this.location = location.content.address_detail.city;
         },
     }
 }

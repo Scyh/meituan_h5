@@ -314,7 +314,6 @@ export default {
             let that = this;
             let temp = JSON.parse(JSON.stringify(that.shop_list)).slice(0, 10)
             that.shop_list = [...that.shop_list, ...temp];
-            console.log(that.shop_list.length)
             return true;
         }
     },

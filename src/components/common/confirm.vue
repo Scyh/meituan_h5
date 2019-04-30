@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <div class="confirm_mask" key="2" v-show="show_mask"></div>
+        <div class="confirm_mask" key="2" v-show="show_mask" @touchmove.prevent></div>
     </transition-group>
 </template>
 <script>
@@ -32,13 +32,15 @@ export default {
     data() {
         return {
             show_box: false,
-            show_mask: false
+            show_mask: false,
+            confirm_data: null,
         }
     },
     methods: {
-        show() {
+        show(data) {
             this.show_box = true;
             this.show_mask = true;
+            this.confirm_data = data;
         },
         cancel() {
             this.$emit('cancle');
@@ -46,7 +48,7 @@ export default {
             this.show_mask = false;
         },
         confirm() {
-            this.$emit('confirm');
+            this.$emit('confirm', this.confirm_data);
             this.show_box = false;
             this.show_mask = false;
         },
@@ -76,8 +78,8 @@ export default {
     opacity: 0;
 }
 #common_confirm {
-    position: absolute;
-    top: 10vh;
+    position: fixed;
+    top: 15vh;
     left: calc(50% - 150px);
     z-index: 102;
     width: 300px;

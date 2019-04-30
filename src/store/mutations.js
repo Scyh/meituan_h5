@@ -5,6 +5,10 @@ const mutations = {
 
     set_user_info: (state, info) => {
         state.user_info = { name: info }
+    },
+
+    set_addr: (state, addr) => {
+        state.location = addr
     }
 };
 

@@ -8,7 +8,7 @@
             <div class="login_box_body">
                 <section class="login_input" placeholder="请输入手机号">
                     <input type="text" v-model="phone" maxlength="11">
-                    <span :class="{ 'enabled': can_get_code }">发送验证码</span>
+                    <span :class="{ 'enabled': !this.timer && can_get_code }" @click="get_code">{{ timer ? timer + 's' : '发送验证码' }}</span>
                 </section>
                 <section class="login_input">
                     <input type="text" v-model="identify_code" placeholder="请输入短信验证码" maxlength="6">
@@ -29,6 +29,7 @@ export default {
         return {
             phone: null,
             identify_code: null,
+            timer: null,    // 验证码定时器
         }
     },
     computed: {
@@ -44,7 +45,23 @@ export default {
         }
     },
     methods: {
-        getCode() {},
+        get_code() {
+            if (!this.timer && this.can_get_code) {
+                this.$tip('验证码已发送！');
+                this.timer = 60;
+                calcTime(this)
+                function calcTime(ctx) {
+                    setTimeout(function() {
+                        if (ctx.timer<= 1) {
+                            ctx.timer = null;
+                        } else {
+                            ctx.timer --;
+                            calcTime(ctx);
+                        }
+                    }, 1000)
+                }
+            }
+        },
 
         login() {
             if (this.phone && this.can_login) {
