@@ -7,6 +7,10 @@ const mutations = {
         state.user_info = { name: info }
     },
 
+    set_city: (state, city) => {
+        state.city = city
+    },
+
     set_addr: (state, addr) => {
         state.location = addr
     }

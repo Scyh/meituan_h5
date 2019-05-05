@@ -12,9 +12,7 @@ const router = new Router({
         {
             path: '/home',  // 首页
             name: 'home',
-            meta: {
-                scroll: true
-            },
+            meta: { scroll: true },
             component: () => import(/* webpackChunkName: "home" */ '@/views/Home/Home.vue')
         },
         {
@@ -53,11 +51,13 @@ const router = new Router({
         {
             path: '/location',  // 定位
             name: 'location',
+            meta: { scroll: true },
             component: () => import(/* webpackChunkName: "location" */ '@/views/Location/Location')
         },
         {
             path: '/select_city',  // 选择城市
             name: 'select_city',
+            meta: { scroll: true },
             component: () => import(/* webpackChunkName: "location" */ '@/views/SelectCity/SelectCity')
         }
     ],

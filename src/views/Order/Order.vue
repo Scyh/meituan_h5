@@ -10,14 +10,14 @@
                             </div>
                             <div class="title-right"><i class="img_right_arrow"></i></div>
                         </div>
-                        <div class="box-content">
+                        <router-link to="/order_info" class="box-content" tag="div">
                             <ul>
                                 <li><div class="food_name">虎邦辣椒30g</div><div class="food_count">x1</div></li>
                                 <li><div class="food_name">鱼香肉丝木桶饭</div><div class="food_count">x1</div></li>
 
                                 <li><div class="order_time">2019-04-08 10:50</div><div class="order_price">实付¥11.3</div></li> 
                             </ul>
-                        </div>
+                        </router-link>
                         <div class="box-foot">
                             <div class="foot-left">订单已完成</div>
                             <div class="foot-right">
@@ -198,9 +198,10 @@ export default {
                     border-radius: 3px;
                 }
                 .btn-remore {
-                    padding: 5px 8px;
-                    background: $global_color;
+                    padding: 5px 10px;
+                    background: #ffd161;
                     border-radius: 3px;
+                    text-align: center;
                 }
             }
         }

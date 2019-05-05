@@ -3,36 +3,38 @@
         <header>
             <div class="location_city">
                 <i class="iconfont icondingwei"></i>
-                <router-link to="/select_city"><span :class="{ 'no_city': !city }">{{ city ? city :'选择城市' }}<i class="img_down_arrow"></i></span></router-link>
+                <router-link to="/select_city" tag="div"><span :class="{ 'no_city': !city }">{{ city ? city :'选择城市' }}<i class="img_down_arrow"></i></span></router-link>
             </div>
             <div class="location_input">
-                <input type="text" placeholder="小区/街道/大厦/学校名称" readonly>
+                <input type="text" placeholder="小区/街道/大厦/学校名称" @focus="search_flag = true" @focusout="search_flag = false" v-model="search_key">
                 <i class="img_search"></i>
             </div>
         </header>
 
-        <section class="location_current">
-            <div class="current">当前位置：<span>{{ current_location || '暂无定位信息' }}</span></div>
-            <div class="relocate"><i class="img_relocate"></i>重新定位</div>
-        </section>
+        <template v-if="!search_flag">
+            <section class="location_current">
+                <div class="current">当前位置：<span>{{ current_location || '暂无定位信息' }}</span></div>
+                <div class="relocate" @click="relocate"><i class="img_relocate"></i>重新定位</div>
+            </section>
 
-        <section class="location_near">
-            <div class="near"><i class="iconfont iconhome"></i> 我的收获地址</div>
-            <ul v-if="show_addr.length > 0">
-                <li v-for="(i, idx) in show_addr" :key="idx" @click="change_receive_addr(i.address)">
-                    <p class="address">{{ i.address }}</p>
-                    <p class="addr_contact"><span>{{i.name}}</span><span>{{i.phone}}</span></p>
-                </li>
-            </ul>
-            <p class="show_all_addr" v-if="show_all_add_flag" @click="show_all">展开全部地址<i class="img_down_arrow"></i></p>
-        </section>
+            <section class="location_near">
+                <div class="near"><i class="iconfont iconhome"></i> 我的收获地址</div>
+                <ul v-if="show_addr.length > 0">
+                    <li v-for="(i, idx) in show_addr" :key="idx" @click="change_receive_addr(i.address)">
+                        <p class="address">{{ i.address }}</p>
+                        <p class="addr_contact"><span>{{i.name}}</span><span>{{i.phone}}</span></p>
+                    </li>
+                </ul>
+                <p class="show_all_addr" v-if="show_all_add_flag" @click="show_all">展开全部地址<i class="img_down_arrow"></i></p>
+            </section>
 
-        <section class="location_near">
-            <div class="near"><i class="iconfont icondingwei"></i> 附近位置</div>
-            <ul v-if="near_list.length > 0">
-                <li v-for="(i,idx) in near_list" :key="idx" @click="change_receive_addr(i)">{{i}}</li>
-            </ul>
-        </section>
+            <section class="location_near">
+                <div class="near"><i class="iconfont icondingwei"></i> 附近位置</div>
+                <ul v-if="near_list.length > 0">
+                    <li v-for="(i,idx) in near_list" :key="idx" @click="change_receive_addr(i)">{{i}}</li>
+                </ul>
+            </section>
+        </template>
         
     </div>
 </template>
@@ -72,6 +74,8 @@ export default {
             show_addr: [],  // 要展示的 地址数据
             show_all_add_flag: false,
             near_list: ['柏悦中心', '柏悦幼儿园', '柏悦府', '信德大厦', '西湖国际广场(习友路)'],  // 附近地址
+            search_flag: false, // 是否在搜索
+            search_key: null,   // 搜索关键字
         }
     },
     created() {
@@ -86,7 +90,6 @@ export default {
         })
     },
     methods: {
-
         // 展开全部地址
         show_all() {
             this.show_all_add_flag = false;
@@ -97,7 +100,13 @@ export default {
         change_receive_addr(addr) {
             this.$store.commit('set_addr', addr);
             this.$router.push('/home');
-        }
+        },
+
+        // 重新定位
+        relocate() {
+            this.$store.commit('set_city', null)
+        },
+
     },
     components: {}
 }
@@ -115,16 +124,21 @@ header {
     border-bottom: 1px solid #e7e7e7;
     .location_city {
         @include flexBox(row, flex-start);
+        max-width: 100px;
         span {
             margin-right: 10px;
             i {
                 margin-left: 2px;
             }
         }
+        > div {
+          @include ellipsis;  
+        }
         span.no_city {
             color: #ffb000;
         }
         i.iconfont {
+            display: inline-block;
             margin-right: 4px;
             font-size: 17px !important;
         }

@@ -1,5 +1,5 @@
 <template>
-    <div class="star">
+    <div class="star" :style="'transform: scale('+ scale +')'">
         <div class="star_top" :style="{ width: show_w }">
             <i class="iconfont iconstart"></i>
             <i class="iconfont iconstart"></i>
@@ -22,6 +22,10 @@ import { getStyle } from '@/common/javascript/util.js'
 export default {
     props: {
         score: Number,
+        scale: {
+            type: Number,
+            default: 1
+        }
     },
     data() {
         return {
@@ -47,6 +51,7 @@ export default {
     .star {
         position: relative;
         display: inline-block;
+        transform-origin: left center;
         .star_top {
             position: absolute;
             top: 0;
