@@ -5,22 +5,22 @@
             <p>xxxxxxxxxxxx</p>
         </section>
         <section class="self_middle">
-            <div class="s_m_item">
+            <router-link to="/self_hongbao" tag="div" class="s_m_item">
                 <div><i class="iconfont iconhongbao"></i>美团红包</div>
                 <span class="img_right_arrow"></span>
-            </div>
-            <div class="s_m_item">
+            </router-link>
+            <router-link to="/self_addr" tag="div" class="s_m_item">
                 <div><i class="iconfont iconlocation"></i>收货地址</div>
                 <span class="img_right_arrow"></span>
-            </div>
+            </router-link>
             <div class="s_m_item">
                 <div><i class="iconfont iconwenti"></i>常见问题</div>
                 <span class="img_right_arrow"></span>
             </div>
-            <div class="s_m_item">
+            <router-link to="/agreement" tag="div" class="s_m_item">
                 <div><i class="iconfont iconxieyixiangqing"></i>美团协议与说明</div>
                 <span class="img_right_arrow"></span>
-            </div>
+            </router-link>
             <div class="s_m_item">
                 <div><i class="iconfont iconweb-icon-"></i>退出登录</div>
                 <span class="img_right_arrow"></span>

@@ -2,7 +2,9 @@
     <transition-group name="scale">
         <div id="common_confirm" v-show="show_box" key="1">
             <div class="confirm_box">
-                <div class="confirm_body">{{message}}</div>
+                <div class="confirm_body">
+                    <slot>确认进行当前操作？</slot>
+                </div>
                 <div class="confirm_footer">
                     <div @click="cancel" class="confirm_cancel">{{cancel_msg}}</div>
                     <div @click="confirm" class="confirm_confirm">{{confirm_msg}}</div>
@@ -18,7 +20,7 @@ export default {
     props: {
         message: {
             type: String,
-            default: '确认进行当前操作？'
+            default: ''
         },
         cancel_msg: {
             type: String,

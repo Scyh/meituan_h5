@@ -44,6 +44,21 @@ const router = new Router({
             meta: { login: true },
         },
         {
+            path: '/self_hongbao',
+            name: 'self_hongbao',
+            component: () => import(/* webpackChunkName: "self_hongbao" */ '@/views/SelfHongBao/SelfHongBao'),
+        },
+        {
+            path: '/self_addr',
+            name: 'self_addr',
+            component: () => import(/* webpackChunkName: "self_addr" */ '@/views/SelfAddr/SelfAddr')
+        },
+        {
+            path: '/self_addr_edit',
+            name: 'self_addr_edit',
+            component: () => import(/* webpackChunkName: "self_addr_edit" */ '@/views/SelfAddr/Children/SelfAddrEdit')
+        },
+        {
             path: '/agreement', // 美团协议
             name: 'agreement',
             component: () => import(/* webpackChunkName: "agreement" */ '@/views/Agreement/Agreement')

@@ -79,6 +79,8 @@ export default {
         }
     },
     created() {
+        console.log(this.is_addr_edit)
+        console.log(this.$router)
         if (this.receive_addr_list.length > 3) {
             this.show_all_add_flag = true;
             this.show_addr = [...this.receive_addr_list.slice(0, 3)];
@@ -87,7 +89,11 @@ export default {
     computed: {
         ...mapState({
             city: 'city'
-        })
+        }),
+
+        is_addr_edit() {
+            return this.$route.query.source === "addr_edit";
+        }
     },
     methods: {
         // 展开全部地址
@@ -107,8 +113,7 @@ export default {
             this.$store.commit('set_city', null)
         },
 
-    },
-    components: {}
+    }
 }
 </script>
 <style lang="scss" scoped>

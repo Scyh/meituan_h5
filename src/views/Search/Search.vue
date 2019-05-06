@@ -60,7 +60,7 @@
                 </template>
             </ul>
         </section>
-        <cconfirm ref="confirm" :message="'确认清空历史搜索？'" @confirm="clear"></cconfirm>
+        <cconfirm ref="confirm" @confirm="clear">确认清空历史搜索？</cconfirm>
     </div>
 </template>
 <script>

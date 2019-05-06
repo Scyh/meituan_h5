@@ -7,7 +7,7 @@ export const loadMore = {
                 let windowH = document.documentElement.clientHeight,
                     height,
                     offsetTop,
-                    distanceH = 40, // 偏移量
+                    distanceH = 60, // 偏移量
                     lastScrollTop,  // 记录上一次的滚动距离
                     flag = true,
                     requestFram,
