@@ -85,7 +85,7 @@
                 <div class="o_s_c_item">
                     <span>送餐时间</span>
                     <div class="deliver_info">
-                        <p>沈(先生)18855185457</p>
+                        <p class="contact">沈(先生)18855185457</p>
                         <p>天鹅花园(xxxxxx)</p>
                     </div>
                 </div>
@@ -109,14 +109,26 @@
         </section>
 
         <!-- 常见问题 -->
-        <section class="order_problem"></section>
+        <section class="order_problem order_section">
+            <div class="o_s_title"></div>
+            <div class="o_s_content">
+                <div class="o_s_c_item online_service"><span>常见问题</span><span>在线客服<i class="img_right_arrow"></i></span></div>
+                <ul class="problem_list">
+                    <li v-for="(i, idx) in problem_list" :key="idx">
+                        <span>{{i}}</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
     </div>
 </template>
 <script>
 import star from '@/components/star/star'
 export default {
     data() {
-        return {}
+        return {
+            problem_list: ['菜品少送', '菜品质量问题', '餐未到却显示已送到', '如何联系商家', '菜品送错了', '如何申请退款']
+        }
     },
     created() {},
     components: {
@@ -129,6 +141,7 @@ export default {
 
 #order_info {
     background: #efefef;
+    font-size: 14px;
     .order_section {
         .o_s_title {
             padding-left: 15px;
@@ -170,7 +183,6 @@ export default {
                 }
             }
             .status_meta {
-                font-size: 14px;
                 color: #666;
                 line-height: 1.4;
             }
@@ -181,7 +193,6 @@ export default {
             > span {
                 display: inline-block;
                 width: 90px;
-                font-size: 14px;
                 line-height: 36px;
                 text-align: center;
                 border-radius: 4px;
@@ -207,7 +218,6 @@ export default {
             .meta_right {
                 margin-top: 15px;
                 @include flexBox(column, center, space-between);
-                font-size: 14px;
                 .meta_right_top {
                     @include flexBox;
                     margin-bottom: 5px;
@@ -226,17 +236,13 @@ export default {
         }
     }
     .order_detail {
-        font-size: 14px;
         .shop_info {
             @include flexBox(row, space-between);
             .shop_meta {
                 flex: 1;
                 font-size: 15px;
                 @include flexBox(row, space-between);
-                span {}
-                .img_right_arrow {}
             }
-            .img_phone {}
         }
         .food_list {
             margin: -10px 0;
@@ -276,16 +282,47 @@ export default {
         }
     }
     .order_deliver {
-        font-size: 14px;
         .o_s_c_item {
             @include flexBox(row, flex-start, flex-start);
             .deliver_info {
-                margin-left: 10px;        
+                margin-left: 10px;    
+            }
+            .contact {
+                margin-bottom: 5px;
             }
         }
         
     }
-    .order_problem {}
+    .order_problem {
+        .online_service {
+            @include flexBox(row, space-between);
+            i {
+                width: 15px;
+                height: 15px;
+                margin-left: 5px;
+                vertical-align: bottom;
+            }
+        }
+        .problem_list {
+            @include flexBox(row, space-between, center, wrap);
+            li {
+                width: 33%;
+                font-size: 13px;
+                
+                text-align: center;
+                span {
+                    display: block;
+                    margin: 5px;
+                    padding: 6px;
+                    box-sizing: border-box;
+                    border: 1px solid #e5e5e5;
+                    overflow: hidden;
+                    text-overflow: clip;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
 
     .meituan_deliver {
         margin-left: 5px;
