@@ -8,8 +8,9 @@
         <section class="edit_item"><span>手机号：</span><input type="text" v-model="addr_obj.contact_phone"></section>
         <section class="edit_item set_addr" @click="change_addr">
             <div>
-                <span>收货地址：{{addr_obj.contact_addr}}</span>
+                <span>收货地址：</span>
                 <i class="iconfont iconlocation"></i>
+                {{addr_obj.contact_addr}}
             </div>
             
             <i class="iconfont iconarrowdown"></i>
@@ -26,6 +27,7 @@
     </div>
 </template>
 <script>
+import { parseUrl } from '@/common/javascript/util'
 export default {
     data() {
         return {
@@ -33,6 +35,8 @@ export default {
                 contact_name: null,
                 contact_phone: null,
                 sex: null,
+                contact_addr: null,
+                contact_addr_detail: null,
             }
         }
     },
@@ -48,9 +52,17 @@ export default {
         }
     },
     created() {
+        // 判断是否存在last_addr_edit_route
+        let { route, address } = this.$store.state.last_addr_edit_route,
+            addr_id = parseUrl(route, 'addr_id');
 
+        if (route && address && this.addr_id && !!this.addr_id == !!addr_id) {
+            this.addr_obj.contact_addr = address;
+        }
     },
-
+    destroyed() {
+        console.log(this.$route)
+    },
     methods: {
         set_sex(sex) {
             this.addr_obj['sex'] = sex;
@@ -69,11 +81,14 @@ export default {
         remove_handle() {},
 
         go_back() {
+            // 清除last_addr_edit_route
+            this.$store.commit('set_addr_edit_route', { route: null, address: null })
             this.$router.push('self_addr')
         },
 
         // 修改收货地址
         change_addr() {
+            this.$store.commit('set_addr_edit_route', { route: this.$route.fullPath })
             this.$router.push('/location?source=addr_edit');
         }
     }

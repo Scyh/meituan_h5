@@ -10,10 +10,16 @@
         </transition>
     </div>
 </template>
-
 <script>
+import { Store } from '@/common/javascript/util.js'
 export default {
-    name: "app"
+    name: "app",
+    created() {
+        let that = this;
+        window.addEventListener('beforeunload', function() {
+            Store.set('__state', that.$store.state)
+        })
+    }
 };
 </script>
 

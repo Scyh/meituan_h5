@@ -79,8 +79,6 @@ export default {
         }
     },
     created() {
-        console.log(this.is_addr_edit)
-        console.log(this.$router)
         if (this.receive_addr_list.length > 3) {
             this.show_all_add_flag = true;
             this.show_addr = [...this.receive_addr_list.slice(0, 3)];
@@ -104,8 +102,15 @@ export default {
 
         // 修改地址
         change_receive_addr(addr) {
-            this.$store.commit('set_addr', addr);
-            this.$router.push('/home');
+            if(this.is_addr_edit) {
+                let { route } = this.$store.state.last_addr_edit_route;
+                this.$store.commit('set_addr_edit_route', { route, address: addr });
+                this.$router.go(-1);
+                console.log(this.$route.matched)
+            } else {
+                this.$store.commit('set_addr', addr);
+                this.$router.push('/home');
+            }
         },
 
         // 重新定位

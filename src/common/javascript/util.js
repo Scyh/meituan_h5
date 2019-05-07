@@ -41,3 +41,17 @@ export const Store = {
         window.localStorage.clear();
     }
 }
+
+export const parseUrl = (url, key) => {
+    if (!url || typeof url !== "string") return;
+
+    let obj = {};
+    let query = url.split("?")[1]
+    if (query) {
+        query.split("&").forEach((i ,idx) => {
+            let [k, v] = i.split("=");
+            obj[k] = v;
+        });
+    }
+    return key ? (obj[key] ? obj[key] : undefined) : obj
+}

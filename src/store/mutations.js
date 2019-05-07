@@ -15,8 +15,8 @@ const mutations = {
         state.location = addr
     },
 
-    set_addr_route: (state, route) => {
-        state.last_addr_edit_route = route
+    set_addr_edit_route: (state, {route, address}) => {
+        state.last_addr_edit_route = { route, address }
     },
 
 };
