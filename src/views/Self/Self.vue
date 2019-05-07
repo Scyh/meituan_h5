@@ -5,23 +5,23 @@
             <p>xxxxxxxxxxxx</p>
         </section>
         <section class="self_middle">
-            <router-link to="/self_hongbao" tag="div" class="s_m_item">
+            <router-link to="/self/hongbao" tag="div" class="s_m_item">
                 <div><i class="iconfont iconhongbao"></i>美团红包</div>
                 <span class="img_right_arrow"></span>
             </router-link>
-            <router-link to="/self_addr" tag="div" class="s_m_item">
+            <router-link to="/self/addr" tag="div" class="s_m_item">
                 <div><i class="iconfont iconlocation"></i>收货地址</div>
                 <span class="img_right_arrow"></span>
             </router-link>
-            <div class="s_m_item">
+            <router-link to="/self/question" tag="div" class="s_m_item">
                 <div><i class="iconfont iconwenti"></i>常见问题</div>
                 <span class="img_right_arrow"></span>
-            </div>
+            </router-link>
             <router-link to="/agreement" tag="div" class="s_m_item">
                 <div><i class="iconfont iconxieyixiangqing"></i>美团协议与说明</div>
                 <span class="img_right_arrow"></span>
             </router-link>
-            <div class="s_m_item">
+            <div class="s_m_item" @click="logout">
                 <div><i class="iconfont iconweb-icon-"></i>退出登录</div>
                 <span class="img_right_arrow"></span>
             </div>
@@ -30,12 +30,23 @@
             <div class="s_b_top">客服电话: 10109777</div>
             <div class="s_b_bottom">服务时间: 9:00-23:00</div>
         </section>
+        <cconfirm ref="confirm" @confirm="logout_handle">确定要退出登录嘛？</cconfirm>
     </div>        
 </template>
 <script>
 export default {
     data() {
         return {}
+    },
+    methods: {
+        logout() {
+            this.$refs.confirm.show();
+        },
+
+        logout_handle() {
+            this.$store.commit('set_user_info', null);
+            this.$router.replace('/home')
+        }
     }
 }
 </script>

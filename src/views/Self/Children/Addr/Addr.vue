@@ -1,7 +1,7 @@
 <template>
     <div id="self_addr">
         <header>
-            <i class="iconfont iconarrowdown"></i>
+            <i @click="go_back" class="iconfont iconarrowdown"></i>
             <p>地址列表</p>
         </header>
         <main>
@@ -24,7 +24,7 @@
         </main>
 
         <footer>
-            <router-link to="/self_addr_edit" tag="div">
+            <router-link to="/self/addr_edit" tag="div">
                 <i class="iconfont iconadd"></i>新增收获地址
             </router-link>
         </footer>
@@ -35,6 +35,11 @@ export default {
     data() {
         return {
             addr_list: []
+        }
+    },
+    methods: {
+        go_back() {
+            this.$router.push('/self');
         }
     }
 }

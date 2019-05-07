@@ -4,7 +4,7 @@ const mutations = {
     },
 
     set_user_info: (state, info) => {
-        state.user_info = { name: info }
+        state.user_info = info
     },
 
     set_city: (state, city) => {

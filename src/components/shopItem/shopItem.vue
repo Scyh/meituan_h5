@@ -1,6 +1,6 @@
 <template>
     <div class="shop_item">
-        <router-link to="/shop/id" is="div">
+        <router-link :to="'/shop/1'" tag="div">
             <div class="shop_box">
                 <div class="shop_box_left">
                     <img src class="shop_img">

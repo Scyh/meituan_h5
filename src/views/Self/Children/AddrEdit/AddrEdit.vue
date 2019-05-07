@@ -56,7 +56,7 @@ export default {
         let { route, address } = this.$store.state.last_addr_edit_route,
             addr_id = parseUrl(route, 'addr_id');
 
-        if (route && address && this.addr_id && !!this.addr_id == !!addr_id) {
+        if (route && address && !!this.addr_id == !!addr_id) {
             this.addr_obj.contact_addr = address;
         }
     },

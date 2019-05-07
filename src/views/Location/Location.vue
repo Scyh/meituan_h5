@@ -20,9 +20,9 @@
             <section class="location_near">
                 <div class="near"><i class="iconfont iconhome"></i> 我的收获地址</div>
                 <ul v-if="show_addr.length > 0">
-                    <li v-for="(i, idx) in show_addr" :key="idx" @click="change_receive_addr(i.address)">
-                        <p class="address">{{ i.address }}</p>
-                        <p class="addr_contact"><span>{{i.name}}</span><span>{{i.phone}}</span></p>
+                    <li v-for="(i, idx) in show_addr" :key="idx" @click="change_receive_addr(i.contact_addr)">
+                        <p class="address">{{ i.contact_addr + '  ' + i.contact_addr_detail }}</p>
+                        <p class="addr_contact"><span>{{i.contact_name}}</span><span>{{i.contact_phone}}</span></p>
                     </li>
                 </ul>
                 <p class="show_all_addr" v-if="show_all_add_flag" @click="show_all">展开全部地址<i class="img_down_arrow"></i></p>
@@ -46,29 +46,34 @@ export default {
             current_location: null, // 当前位置
             receive_addr_list: [
                 {
-                    address: '置地·栢悦公馆 栢悦中心写字楼29楼',
-                    name: '沈超越先生',
-                    phone: '18888888888'
+                    contact_addr: '置地·栢悦公馆',
+                    contact_addr_detail: '栢悦中心写字楼29楼',
+                    contact_name: '沈超越先生',
+                    contact_phone: '18888888888'
                 },
                 {
-                    address: '置地·栢悦公馆 栢悦中心写字楼29楼',
-                    name: '沈超越先生',
-                    phone: '18888888888'
+                    contact_addr: '置地·栢悦公馆',
+                    contact_addr_detail: '栢悦中心写字楼29楼',
+                    contact_name: '沈超越先生',
+                    contact_phone: '18888888888'
                 },
                 {
-                    address: '置地·栢悦公馆 栢悦中心写字楼29楼',
-                    name: '沈超越先生',
-                    phone: '18888888888'
+                    contact_addr: '置地·栢悦公馆',
+                    contact_addr_detail: '栢悦中心写字楼29楼',
+                    contact_name: '沈超越先生',
+                    contact_phone: '18888888888'
                 },
                 {
-                    address: '置地·栢悦公馆 栢悦中心写字楼29楼',
-                    name: '沈超越先生',
-                    phone: '18888888888'
+                    contact_addr: '置地·栢悦公馆',
+                    contact_addr_detail: '栢悦中心写字楼29楼',
+                    contact_name: '沈超越先生',
+                    contact_phone: '18888888888'
                 },
                 {
-                    address: '置地·栢悦公馆 栢悦中心写字楼29楼',
-                    name: '沈超越先生',
-                    phone: '18888888888'
+                    contact_addr: '置地·栢悦公馆',
+                    contact_addr_detail: '栢悦中心写字楼29楼',
+                    contact_name: '沈超越先生',
+                    contact_phone: '18888888888'
                 },
             ],
             show_addr: [],  // 要展示的 地址数据

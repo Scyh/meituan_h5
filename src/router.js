@@ -39,24 +39,35 @@ const router = new Router({
         },
         {
             path: '/self',      // 个人主页
-            name: 'self',
-            component: () => import(/* webpackChunkName: "self" */ '@/views/Self/Self'),
+            component: () => import(/* webpackChunkName: "self" */ '@/App.vue'),
+            // component: () => import(/* webpackChunkName: "self" */ '@/views/Self/Self'),
             meta: { login: true },
-        },
-        {
-            path: '/self_hongbao',
-            name: 'self_hongbao',
-            component: () => import(/* webpackChunkName: "self_hongbao" */ '@/views/SelfHongBao/SelfHongBao'),
-        },
-        {
-            path: '/self_addr',
-            name: 'self_addr',
-            component: () => import(/* webpackChunkName: "self_addr" */ '@/views/SelfAddr/SelfAddr')
-        },
-        {
-            path: '/self_addr_edit',
-            name: 'self_addr_edit',
-            component: () => import(/* webpackChunkName: "self_addr_edit" */ '@/views/SelfAddr/Children/SelfAddrEdit')
+            children: [
+                {
+                    path: '',
+                    component: () => import(/* webpackChunkName: "self" */ '@/views/Self/Self'),
+                },
+                {
+                    path: 'hongbao',
+                    name: 'self_hongbao',
+                    component: () => import(/* webpackChunkName: "self_hongbao" */ '@/views/Self/Children/HongBao/HongBao'),
+                },
+                {
+                    path: 'addr',
+                    name: 'self_addr',
+                    component: () => import(/* webpackChunkName: "self_addr" */ '@/views/Self/Children/Addr/Addr')
+                },
+                {
+                    path: 'addr_edit',
+                    name: 'self_addr_edit',
+                    component: () => import(/* webpackChunkName: "self_addr_edit" */ '@/views/Self/Children/AddrEdit/AddrEdit')
+                },
+                {
+                    path: 'question',
+                    name: 'self_question',
+                    component: () => import(/* webpackChunkName: "SelfQuestion" */ '@/views/Self/Children/Question/Question')
+                },
+            ]
         },
         {
             path: '/agreement', // 美团协议
@@ -74,6 +85,12 @@ const router = new Router({
             name: 'select_city',
             meta: { scroll: true },
             component: () => import(/* webpackChunkName: "location" */ '@/views/SelectCity/SelectCity')
+        },
+        {
+            path: '/shop/:id',
+            name: 'shop_detail',
+            meta: { scroll: true },
+            component: () => import(/* webpackChunkName: "shop_detail" */ '@/views/Shop/Shop'),
         }
     ],
     scrollBehavior(to, from, savedPosition) {

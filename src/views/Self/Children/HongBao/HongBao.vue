@@ -38,7 +38,7 @@
     </div>
 </template>
 <script>
-import invalid from '@/views/SelfHongBao/Children/Invalid';
+import invalid from '@/views/Self/Children/HongBao/Children/Invalid';
 export default {
     data() {
         return {
