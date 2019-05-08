@@ -1,8 +1,8 @@
 module.exports = {
   plugins: {
     autoprefixer: {},
-    'postcss-plugin-px2rem': {
-        rootValue: 20
-    }
+    // 'postcss-plugin-px2rem': {
+    //     rootValue: 20
+    // }
   }
 }

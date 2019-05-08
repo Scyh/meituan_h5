@@ -1,35 +1,35 @@
 <template>
     <div id="shop">
-        <header>
-            <!-- 返回 -->
-            <div class="back"><i class="iconfont iconarrowdown"></i></div>
-            <div class="shop_meta">
-                <div class="shop_meta_left">
-                    <img src="">
-                </div>
-                <div class="shop_meta_right">
-                    <!-- 时间与距离 -->
-                    <div class="s_m_distance">
-                        <div><span>{{shop.deliver.time}}</span><span>{{shop.deliver.distance}}</span></div>
-                        <i :class="{'img_meituan': shop.deliver.is_meituan}"></i>
+        <div>
+            <header>
+                <!-- 返回 -->
+                <div class="back"><i class="iconfont iconarrowdown"></i></div>
+                <div class="shop_meta">
+                    <div class="shop_meta_left">
+                        <img src="">
                     </div>
-                    <!-- 公告 -->
-                    <div class="s_m_announce">{{shop.announce}}</div>
-                    <!-- 优惠轮播 -->
-                    <div class="s_m_discount">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">满32减13;满45减20;满65减25</div>
-                            <div class="swiper-slide">折扣商品5折起</div>
-                            <div class="swiper-slide">领4元券;领30元券</div>
-                            <div class="swiper-slide">实际支付50元返4元商家代金券</div>
+                    <div class="shop_meta_right">
+                        <!-- 时间与距离 -->
+                        <div class="s_m_distance">
+                            <div><span>{{shop.deliver.time}}</span><span>{{shop.deliver.distance}}</span></div>
+                            <i :class="{'img_meituan': shop.deliver.is_meituan}"></i>
                         </div>
-                        <i class="iconfont iconmore"></i>
+                        <!-- 公告 -->
+                        <div class="s_m_announce">{{shop.announce}}</div>
+                        <!-- 优惠轮播 -->
+                        <div class="s_m_discount">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">满32减13;满45减20;满65减25</div>
+                                <div class="swiper-slide">折扣商品5折起</div>
+                                <div class="swiper-slide">领4元券;领30元券</div>
+                                <div class="swiper-slide">实际支付50元返4元商家代金券</div>
+                            </div>
+                            <i class="iconfont iconmore"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </header>
-
-        <main>
+            </header>
+            
             <article>
                 <div class="article_title">
                     <span :class='{"checked": current_content_idx === 1}' @click="switch_tip(0,1)">点评</span>
@@ -39,16 +39,19 @@
                 </div>
                 <div class="article_content">
                     <div class="content_wrap" :style="'transform: translateX(-'+ title_tip_distance +')'">
-                        <section ref="1">1111111111111111111111111</section>
+                        <section ref="1">
+                            <GoogdList></GoogdList>
+                        </section>
                         <section ref="2">22222222222222222222222</section>
                         <section ref="3">333333333333333333333</section>
                     </div>
                 </div>
             </article>
-        </main>
+        </div>
     </div>
 </template>
 <script>
+import GoogdList from '@/views/Shop/Children/GoodsList'
 export default {
     data() {
         return {
@@ -100,6 +103,9 @@ export default {
             this.title_tip_distance = idx;
             this.current_content_idx = c_idx;
         }
+    },
+    components: {
+        GoogdList,
     }
 }
 </script>
@@ -116,6 +122,12 @@ export default {
 }
 
 #shop {
+    width: 100vw;
+    height: 100vh;
+    > div {
+        width: 100%;
+        height: 100%;
+    }
     header {
         padding-left: 10px;
         background-color: rgb(46, 47, 59);
@@ -174,60 +186,67 @@ export default {
         }
     }
 
-    main {
-        .article_title {
+    
+    article {
+        @include flexBox(column, flex-start, flex-start);
+        width: 100vw;
+        height: 100vh;
+    }
+    .article_title {
+        position: relative;
+        width: 100%;
+        @include flexBox;
+        > span {
             position: relative;
-            @include flexBox;
-            > span {
-                position: relative;
-                flex: 1;
-                display: inline-block;
-                text-align: center;
-                font-size: 16px;
-                line-height: 40px;
-                color: #666;
-                &::after {
-                    position: absolute;
-                    left: 0;
-                    bottom: 0;
-                    @include borderBottom;
-                }
-            }
-            > span.checked {
-                font-weight: 600;
-            }
-            > .title_tip {
-                width: 33.3%;
-                height: 1px;
+            flex: 1;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+            line-height: 40px;
+            color: #666;
+            &::after {
+                position: absolute;
                 left: 0;
                 bottom: 0;
-                position: absolute;
-                transition: transform .2s linear;
-                &::after {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: 42%;
-                    display: inline-block;
-                    width: 20px;
-                    height: 2px;
-                    background: #ffb000;
-                }
-                
+                @include borderBottom;
             }
         }
-        .article_content {
-            width: 100vw;
+        > span.checked {
+            font-weight: 600;
+        }
+        > .title_tip {
+            width: 33.3%;
+            height: 1px;
+            left: 0;
+            bottom: 0;
+            position: absolute;
+            transition: transform .2s linear;
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 42%;
+                display: inline-block;
+                width: 20px;
+                height: 2px;
+                background: #ffb000;
+            }
             
-            .content_wrap {
-                @include flexBox(row, flex-start, center, nowrap);
+        }
+    }
+    .article_content {
+        flex: 1;
+        width: 100vw;
+        overflow-x: hidden;
+        .content_wrap {
+            @include flexBox(row, flex-start, center, nowrap);
+            width: 100vw;
+            height: 100%;
+            transition: transform .3s linear;
+            > section {
                 width: 100vw;
-                transition: transform .3s linear;
-                > section {
-                    float: left;
-                    width: 100vw;
-                    flex: 0 0 auto;
-                }
+                height: 100%;
+                flex: 0 0 auto;
             }
         }
     }
