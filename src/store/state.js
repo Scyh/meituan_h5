@@ -11,10 +11,37 @@ export const state = Store.get('__state') ? JSON.parse(Store.get('__state')) : {
         route: null,
         address: null,
     },  // 地址编辑信息
+    cart: {},       // 购物车
 };
 
 export const getters = {
     hasLogin: state => {
         return JSON.stringify(state.user_info) === '{}' ? false : true;
-    }
+    },
+
+    get_cart: state => shop_id => {
+        return state.cart[shop_id] ? state.cart[shop_id] : null;
+    },
 }
+
+/**
+ * 
+ * {
+ *  shop_id: {
+ *          cate: {
+ *              food_name: {
+ *                  count,
+ *                  price,
+ *                  其他信息    
+ *              }
+ 
+ *          }
+ *      }
+ *  
+ * 
+ * }
+ * 
+ * 
+ * 
+ * 
+ */

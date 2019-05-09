@@ -177,6 +177,12 @@ input::-webkit-input-placeholder {
     display: inline-block;
     @include bg_img(25px, 25px, '~src/assets/goods_del.png');
 }
+.img_cart_none {
+    @include bg_img(50px, 50px, '~src/assets/cart_none.png');
+}
+.img_cart_has {
+    @include bg_img(50px, 50px, '~src/assets/cart_has.png');
+}
 
 .f_l {
     float: left;

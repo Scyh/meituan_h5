@@ -40,25 +40,44 @@
                 <div class="article_content">
                     <div class="content_wrap" :style="'transform: translateX(-'+ title_tip_distance +')'">
                         <section ref="1">
-                            <GoogdList></GoogdList>
+                            <GoogdList :shop_id="shop._id" @selected="get_selected"></GoogdList>
                         </section>
                         <section ref="2">22222222222222222222222</section>
                         <section ref="3">333333333333333333333</section>
                     </div>
                 </div>
             </article>
+
+            <footer>
+                <!-- 购物栏详情 -->
+                <div></div>
+
+                <div class="goods_cart">
+                    <div class="g_c_left">
+                        <div class="cart_img img_cart_none"></div>
+                        <div class="deliver_price">另需配送费¥0  {{selected_count}}</div>
+                    </div>
+                    <div class="g_c_right">
+                        <div>¥0起送</div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
 </template>
 <script>
 import GoogdList from '@/views/Shop/Children/GoodsList'
+import { mapGetters } from 'vuex'
 export default {
     data() {
         return {
             title_tip_distance: '0',
             current_content_idx: 1,
             current_content_distance: '0',
+            selected_count: 0,
+            selected_price: 0,
             shop: {
+                _id: 111,
                 shop_brand_img: '',
                 announce: '欢迎光临xxx,xxxxxxxxxxxxxxxxx',  // 公告
                 discount: { // 优惠
@@ -86,11 +105,14 @@ export default {
                     start_time: '10:00',    // 配送时间
                     end_time: '21:59',      // 配送时间
                     limit: 0,       // 起送费
+                    price: 6,       // 配送费
                 }
             }
         }
     },
-    created() {},
+    created() {
+        
+    },
     mounted() {
         new Swiper('.s_m_discount', {
             direction: 'vertical',
@@ -102,6 +124,21 @@ export default {
         switch_tip(idx, c_idx) {
             this.title_tip_distance = idx;
             this.current_content_idx = c_idx;
+        },
+
+        get_selected() {
+            // 获取选择的商品
+            let selected = this.$store.getters.get_cart(this.shop._id);
+            let count = 0,
+                price = 0;
+            for(let i in selected) {
+                for (let f in selected[i]) {
+                    count += selected[i][f].count;
+                    price = selected[i][f].count * selected[i][f].price;
+                }
+            }
+            this.selected_count = count;
+            this.selected_price = price;
         }
     },
     components: {
@@ -185,8 +222,6 @@ export default {
             }
         }
     }
-
-    
     article {
         @include flexBox(column, flex-start, flex-start);
         width: 100vw;
@@ -247,6 +282,42 @@ export default {
                 width: 100vw;
                 height: 100%;
                 flex: 0 0 auto;
+            }
+        }
+    }
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        .goods_cart {
+            @include flexBox(row, space-between);
+            width: 100%;
+            height: 50px;
+            position: relative;
+            background: #3b3b3c;
+            .g_c_left {
+                .cart_img {
+                    position: absolute;
+                    top: -10px;
+                    left: 10px;
+                }
+                .deliver_price {
+                    padding-left: 70px;
+                    font-size: 14px;
+                    color: #999;
+                }
+            }
+            .g_c_right {
+                
+                font-size: 16px;
+                font-weight: 600;
+                color: #999;
+                > div {
+                    height: 50px;
+                    line-height: 50px;
+                    padding: 0 20px;
+                }
             }
         }
     }

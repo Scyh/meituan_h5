@@ -1,7 +1,10 @@
 <template>
     <div id="goods_list">
         <nav v-if="nav.length > 0"  class="list_nav" ref="nav" @touchstart="start" @touchmove="move" @touchend="end">
-            <a v-for="(i, idx) in nav" :key="idx" :class="{ 'curr': curr_cate == i }">{{i}}</a>
+            <a v-for="(i, idx) in nav" :key="idx" :class="{ 'curr': curr_cate == i.name }" @click="jump_to_cate(idx)">
+                {{i.name}}
+                <span v-if="i.count > 0" class="cate_count">{{i.count}}</span>
+            </a>
         </nav>
         <div v-if="goods_list.length > 0" class="list_content" ref="content" @touchstart="start" @touchmove="move" @touchend="end">
             <template v-if="goods_list.length > 0">
@@ -14,15 +17,15 @@
                                     <img src="" alt="">
                                 </div>
                                 <div class="goods_right">
-                                    <div class="goods_name">二块新奥尔良烤翅T</div>
+                                    <div class="goods_name">{{food.name}}</div>
                                     <div class="goods_intro">鲜嫩多汁，具烧烤香和甜辣味,主要原料:鸡翅</div>
-                                    <div class="goods_meta"><span>月售975</span>&nbsp;&nbsp;赞6</div>
+                                    <div class="goods_meta"><span>月售{{food.sale}}</span>&nbsp;&nbsp;赞6</div>
                                     <div class="goods_price">
                                         <span>¥&nbsp;11.5</span>
                                         <div>
-                                            <i class="img_goods_del"></i>
-                                            <span class="goods_count">1</span>
-                                            <i class="img_goods_add"></i>
+                                            <i class="img_goods_del" v-if="food.count > 0" @click="set_to_cart(-1,index,food.name,food.price,food.count,idx,food.cate)"></i>
+                                            <span class="goods_count" v-if="food.count > 0">{{food.count}}</span>
+                                            <i class="img_goods_add" @click="set_to_cart(1,index,food.name,food.price,food.count,idx,food.cate)"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -31,6 +34,9 @@
                     </div>
                 </section>
             </template>
+            
+            <div class="curr_cate" ref="curr_cate">{{curr_cate}}</div>
+
         </div>
     </div>
 </template>
@@ -38,6 +44,7 @@
 import BS from 'better-scroll'
 import { getOffsetTop, getStyle } from '@/common/javascript/util'
 export default {
+    props: ['shop_id'],
     data() {
         return {
             move_start: 0,
@@ -46,16 +53,30 @@ export default {
             direction: null,
             curr_cate: null,  // 当前分类
             cate_h_list: [],    // 所有分类的高度
-            nav: ['热销', '新品上市', '桶', '美味汉堡/卷', '鸡翅/鸡排', '原味鸡', '小食/配餐', '甜品/冰淇淋', '缤纷饮料', 'K 咖啡', '美味早餐', '夜宵套餐', '夜宵单品'],
+            nav: ['新品上市', '桶', '美味汉堡/卷', '鸡翅/鸡排', '原味鸡', '小食/配餐', '甜品/冰淇淋', '缤纷饮料', 'K 咖啡', '美味早餐', '夜宵套餐', '夜宵单品'],
             goods_list: [
                 {
                     category: '热销',
                     list: [
                         {
-                            name: '',
-                            intro: '这里是一段简单的介绍xxx',
-                            sale: 30,
-                            zan: 2,
+                            name: String.fromCharCode(Math.random().toString().substr(2,5)) +　String.fromCharCode(Math.random().toString().substr(2,5)),   // 商品名称
+                            intro: '这里是一段简单的介绍xxx',   // 商品简介
+                            sale: Math.ceil(Math.random() * 100 ),   // 月售
+                            zan: 2,     // 赞
+                            is_sale_out: false,
+                            cate: 'xxx',
+                            count: 0,   // 购买数量
+                            sale_time: [    // 可售时间
+                                { week_day: 1, day_time: '00:00-23:59' },
+                                { week_day: 2, day_time: '00:00-23:59' },
+                                { week_day: 3, day_time: '00:00-23:59' },
+                                { week_day: 4, day_time: '00:00-23:59' },
+                                { week_day: 5, day_time: '00:00-23:59' },
+                                { week_day: 6, day_time: '00:00-23:59' },
+                                { week_day: 7, day_time: '00:00-23:59' },
+                            ],
+                            is_specification: false,
+                            price: Math.ceil(Math.random() * 100 + 1),
                             specification: [    // 规格
                                 {
                                     title: '规格',  // 规格标题
@@ -74,95 +95,95 @@ export default {
                                     ]
                                 }
                             ]
-                        },
-                        {
-                            name: '',
-                            intro: '这里是一段简单的介绍xxx',
-                            sale: 30,
-                            zan: 2,
-                            specification: [    // 规格
-                                {
-                                    title: '规格',  // 规格标题
-                                    content: [
-                                        { name: '大(份)', price: 14.5, old_price: 14.5, is_discount: false },
-                                        { name: '小(份)', price: 11.5, old_price: 11.5, is_discount: false },
-                                    ]
-                                },
-                                {
-                                    title: '口味',
-                                    cotent: [
-                                        { name: '甜辣' },
-                                        { name: '孜然' },
-                                        { name: '微辣' },
-                                        { name: '麻辣' },
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            name: '',
-                            intro: '这里是一段简单的介绍xxx',
-                            sale: 30,
-                            zan: 2,
-                            specification: [    // 规格
-                                {
-                                    title: '规格',  // 规格标题
-                                    content: [
-                                        { name: '大(份)', price: 14.5, old_price: 14.5, is_discount: false },
-                                        { name: '小(份)', price: 11.5, old_price: 11.5, is_discount: false },
-                                    ]
-                                },
-                                {
-                                    title: '口味',
-                                    cotent: [
-                                        { name: '甜辣' },
-                                        { name: '孜然' },
-                                        { name: '微辣' },
-                                        { name: '麻辣' },
-                                    ]
-                                }
-                            ]
-                        },
-
+                        }
                     ]
-                },
-                {
-                    category: '新品上市',
-                    list: [1,2,3,4]
-                },
+                }
             ],
+            cart: {},   // 购物车
         }
     },
-    created() {
-        for (let i = 0; i < 1; i++ ) {
-            this.goods_list = [...this.goods_list, i]
-        };
-
-        this.goods_list = [];
-        this.nav.forEach((i, idx) => {
-            this.goods_list.push({
-                category: i,
-                list: Math.random().toString().substr(2, Math.random() * 5 + 3).split('')
-            });
-        });
-        this.curr_cate = this.nav[0];
-
-        this.$nextTick(() => {
-            let base_top = getOffsetTop(this.$refs.content);
-            for(let i in this.$refs) {
-                if (i.toString().indexOf('g_l_i') > -1) {
-                    this.cate_h_list.push( getOffsetTop(this.$refs[i][0]) - base_top )
-                }
-            };
-
-            
-        })
-        
+    created() {        
+        this.init_goods_list();
     },
     mounted() {
 
     },
     methods: {
+        init_goods_list() {
+            this.goods_list = [];
+            this.nav.forEach((i, idx) => {
+                this.goods_list.push({
+                    category: i,
+                    list: Math.random().toString().substr(2, Math.random() * 5 + 3).split('').map(() => { return {
+                            name: String.fromCharCode('2' + Math.random().toString().substr(2,4)) +　String.fromCharCode('2' + Math.random().toString().substr(2,4)),   // 商品名称
+                            intro: '这里是一段简单的介绍xxx',   // 商品简介
+                            sale: Math.ceil(Math.random() * 100),   // 月售
+                            zan: 2,     // 赞
+                            is_sale_out: false,
+                            count: 0,   // 购买数量
+                            cate: i,
+                            sale_time: [    // 可售时间
+                                { week_day: 1, day_time: '00:00-23:59' },
+                                { week_day: 2, day_time: '00:00-23:59' },
+                                { week_day: 3, day_time: '00:00-23:59' },
+                                { week_day: 4, day_time: '00:00-23:59' },
+                                { week_day: 5, day_time: '00:00-23:59' },
+                                { week_day: 6, day_time: '00:00-23:59' },
+                                { week_day: 7, day_time: '00:00-23:59' },
+                            ],
+                            is_specification: false,
+                            price: Math.ceil(Math.random() * 100 + 1),
+                            specification: [    // 规格
+                                {
+                                    title: '规格',  // 规格标题
+                                    content: [
+                                        { name: '大(份)', price: 14.5, old_price: 14.5, is_discount: false },
+                                        { name: '小(份)', price: 11.5, old_price: 11.5, is_discount: false },
+                                    ]
+                                },
+                                {
+                                    title: '口味',
+                                    cotent: [
+                                        { name: '甜辣' },
+                                        { name: '孜然' },
+                                        { name: '微辣' },
+                                        { name: '麻辣' },
+                                    ]
+                                }
+                            ]
+                        } })
+                });
+            });
+
+
+            this.nav.unshift('热销');
+            let len = Math.ceil(Math.random() * 7 + 3),
+                temp = [];
+            this.goods_list.forEach(i => {
+                temp = [...temp, ...i.list];
+            });
+            temp.sort((a, b) => a.sale - b.sale)
+            this.goods_list.unshift({
+                category: '热销',
+                list: temp.sort().slice(0, len - 1),
+            });
+
+
+            this.nav = this.nav.map(i => {
+                return { name: i, count: 0 }
+            })
+            this.curr_cate = this.nav[0].name;
+
+            this.$nextTick(() => {
+                let base_top = getOffsetTop(this.$refs.content);
+                for(let i in this.$refs) {
+                    if (i.toString().indexOf('g_l_i') > -1) {
+                        this.cate_h_list.push( getOffsetTop(this.$refs[i][0]) - base_top )
+                    }
+                };
+            })
+        },
+
         start(ev) {
             this.move_start = ev.touches[0].pageX;
             this.move_last = ev.touches[0].screenY;
@@ -205,19 +226,61 @@ export default {
 
         get_curr_cate(start) {
             start = start || 0;
-            let len = this.cate_h_list.length
+            let len = this.cate_h_list.length,
+                disY = 10;
             if (start < len) {
-                if (this.$refs.content.scrollTop >= this.cate_h_list[start] && this.$refs.content.scrollTop <= this.cate_h_list[start + 1]) {
-                    this.curr_cate = this.nav[start]
-                    console.log(this.nav[start])
+                if (this.$refs.content.scrollTop >= (this.cate_h_list[start] - disY) && this.$refs.content.scrollTop <= (this.cate_h_list[start + 1] - disY)) {
+                    this.curr_cate = this.nav[start].name
                     return false;
                 } else {
                     this.get_curr_cate(start + 1);
                 }
             } else {
-                this.curr_cate = this.nav[len - 1];
+                this.curr_cate = this.nav[len - 1].name;
             }
-        }
+        },
+
+        jump_to_cate(idx, distance) {
+            let ref_sTop = this.$refs.content.scrollTop,
+                targ_sTop = this.cate_h_list[idx] - 8;
+            this.requestFram = requestAnimationFrame(() => {
+                if (ref_sTop != targ_sTop) {
+                    let disY = targ_sTop - this.$refs.content.scrollTop;
+                    distance = distance ? (Math.abs(disY) > Math.abs(distance) ? distance : disY) : Math.ceil((targ_sTop - ref_sTop) / 10);
+                    this.$refs.content.scrollBy(0, distance);
+                    this.jump_to_cate(idx, distance)
+                } else {
+                    cancelAnimationFrame(this.requestFram);
+                    this.get_curr_cate();
+                }
+            })
+        },
+
+        // 添加到购物车
+        set_to_cart(count, food_idx, food_name, food_price, food_count, cate_idx, cate) {
+            event.preventDefault();
+            this.goods_list[cate_idx].list[food_idx].count = this.goods_list[cate_idx].list[food_idx].count + count;
+            this.nav.forEach(i => {
+                i.name === cate && (i.count = i.count + count);
+            });
+
+            if(this.cart[cate]) {
+                if (food_count === 0) {
+                    delete this.cart[cate][food_name];
+                } else {
+                    this.cart[cate] = {
+                        [food_name]: { price: food_price, count: food_count + count }
+                    }
+                }
+            } else {
+                this.cart[cate] = {};
+                this.cart[cate][food_name] = { price: food_price, count: food_count + count };
+            }
+            this.$store.commit('set_goods_to_cart', { shop_id: this.shop_id, data_obj: this.cart});
+
+            this.$emit('selected');
+        },
+        
     }
 }
 </script>
@@ -227,29 +290,60 @@ export default {
     @include flexBox(row, flex-start, flex-start);
     height: 100%;
     .list_nav {
+        @include flexBox(column, flex-start, flex-start);
         width: 80px;
         height: 100%;
+        padding-bottom: 80px;
         font-size: 13px;
         color: #666;
         overflow-y: scroll;
         background: #eee;
-        @include flexBox(column, flex-start, flex-start);
         a {
             padding: 15px 10px 22px;
             width: 100%;
             box-sizing: border-box;
             text-align: left;
+            position: relative;
         }
         a.curr {
             background: #fff;
         }
+        .cate_count {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 24px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 20px;
+            color: #fff;
+            text-align: center;
+            border-radius: 100%;
+            transform: scale(.5);
+            background: #fb4e44;
+        }
     }
     .list_content {
+        position: relative;
         flex: 1;
         overflow-x: hidden;
         overflow-y: scroll;
         height: 100%;
         background: #fff;
+        .curr_cate {
+            position: fixed;
+            top: 0;
+            left: 80px;
+            width: 100%;
+            height: 36px;
+            padding-left: 10px;
+            font-size: 12px;
+            line-height: 36px;
+            background: #fff;
+        }
+        .g_l_item:last-of-type {
+            min-height: 100%;
+        }
     }
 
     .g_l_item {
@@ -312,9 +406,6 @@ export default {
                 }
             }
         }
-    }
-    .g_l_item:last-child {
-        min-height: 100%;
     }
 }
 </style>
