@@ -122,7 +122,7 @@ export default {
             direction: 'vertical',
             loop: true,
             autoplay: 1000,
-        });
+        })
     },
     methods: {
         switch_tip(idx, c_idx) {
@@ -164,17 +164,13 @@ export default {
 
 #shop {
     width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    height: 100%;
     > div {
         width: 100%;
         height: 100%;
-        @include flexBox(column);
     }
     header {
-        width: 100%;
         padding-left: 10px;
-        flex: 0 0 130px;
         background-color: rgb(46, 47, 59);
         .back {
             width: 100%;
@@ -231,8 +227,9 @@ export default {
         }
     }
     article {
-        flex: 1;
         @include flexBox(column, flex-start, flex-start);
+        width: 100vw;
+        height: 100vh;
     }
     .article_title {
         position: relative;

@@ -55,3 +55,19 @@
     align-items: $align;
     flex-wrap: $wrap
 }
+
+// selected_count
+
+@mixin count($width: 24px, $height: 24px, $scale: scale(.5)) {
+    width: $width;
+    height: $height;
+    line-height: $height;
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+    border-radius: 100%;
+    transform: $scale;
+    -webkit-transform: $scale(.5);
+    background: #fb4e44;
+}
+            
