@@ -38,7 +38,7 @@ export default {
     // transform: translateX(50vw);
     opacity: 0;
 }
-
-
-
+::-webkit-scrollbar {
+    width: 0 !important;
+}
 </style>

@@ -1,6 +1,6 @@
 import { Store } from 'src/common/javascript/util';
 
-export const state = Store.get('__state') ? JSON.parse(Store.get('__state')) : {
+export const state =  {
     user_info: {
         name: '测试'
     },  // 用户信息
@@ -19,7 +19,7 @@ export const getters = {
         return JSON.stringify(state.user_info) === '{}' ? false : true;
     },
 
-    get_cart: state => shop_id => {
+    cart: state => shop_id => {
         return state.cart[shop_id] ? state.cart[shop_id] : null;
     },
 }

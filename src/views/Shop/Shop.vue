@@ -1,6 +1,6 @@
 <template>
     <div id="shop">
-        <div>
+        <div id="scroll_wrap" ref="scroll_wrap">
             <header>
                 <!-- 返回 -->
                 <div class="back"><i class="iconfont iconarrowdown"></i></div>
@@ -19,10 +19,10 @@
                         <!-- 优惠轮播 -->
                         <div class="s_m_discount">
                             <div class="swiper-wrapper">
-                                <div class="swiper-slide">满32减13;满45减20;满65减25</div>
-                                <div class="swiper-slide">折扣商品5折起</div>
-                                <div class="swiper-slide">领4元券;领30元券</div>
-                                <div class="swiper-slide">实际支付50元返4元商家代金券</div>
+                                <div class="swiper-slide swiper-no-swiping">满32减13;满45减20;满65减25</div>
+                                <div class="swiper-slide swiper-no-swiping">折扣商品5折起</div>
+                                <div class="swiper-slide swiper-no-swiping">领4元券;领30元券</div>
+                                <div class="swiper-slide swiper-no-swiping">实际支付50元返4元商家代金券</div>
                             </div>
                             <i class="iconfont iconmore"></i>
                         </div>
@@ -40,7 +40,7 @@
                 <div class="article_content">
                     <div class="content_wrap" :style="'transform: translateX(-'+ title_tip_distance +')'">
                         <section ref="1">
-                            <GoogdList :shop_id="shop._id" @selected="get_selected"></GoogdList>
+                            <GoogdList ref="goodList" :shop_id="shop._id" @selected="get_selected"></GoogdList>
                         </section>
                         <section ref="2">22222222222222222222222</section>
                         <section ref="3">333333333333333333333</section>
@@ -48,18 +48,58 @@
                 </div>
             </article>
 
-            <footer>
+            <footer v-show="title_tip_distance == 0">
                 <!-- 购物栏详情 -->
-                <div></div>
+                <transition name="slideUp">
+                    <div class="cart_detail" v-if="show_cart">
+                        <div class="cart_title">
+                            <span>购物车</span>
+                            <span>清空购物车</span>
+                        </div>
+                        <div class="cart_content">
+                            <template v-if="cart.length > 0">
+                                <template v-for="i in cart">
+                                    <div class="cart_item" v-if="i.count > 0" :key="i.name">
+                                        <div class="c_i_left">
+                                            <div class="c_i_l_name">
+                                                <p class="food_name">{{i.food_name}}</p>
+                                                <p class="food_standard">份(份)</p>
+                                            </div>
+                                            <div class="c_i_l_price">¥{{i.price}}</div>
+                                        </div>
+                                        <div class="c_i_right">
+                                            <i class="img_goods_del" @click="handleSetCart(-1,i.food_idx,i.food_name,i.price,i.cate_idx,i.cate)"></i>
+                                                <span class="goods_count" @click="handleSetCart(1,i.food_idx,i.food_name,i.price,i.cate_idx,i.cate)">{{i.count}}</span>
+                                            <i class="img_goods_add"></i>
+                                        </div>
+                                    </div>
+                                </template>
+                            </template>
+                            <div class="cart_item">
+                                <div class="c_i_left">
+                                    <div class="c_i_l_name">
+                                        <p class="food_name">包装费</p>
+                                    </div>
+                                    <div class="c_i_l_price">¥0</div>
+                                </div>
+                                <div class="c_i_right">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
 
                 <div class="goods_cart">
-                    <div class="g_c_left">
+                    <div class="g_c_left" @click="toggleCart">
                         <div class="cart_img_wrap">
                             <div :class="['cart_img', selected_count > 0 ? 'img_cart_has' : 'img_cart_none']"></div>
                             <i v-if="selected_count > 0" class="selected_count">{{selected_count}}</i>
                         </div>
                         
-                        <div class="deliver_price">另需配送费¥0  {{selected_count}}</div>
+                        <div class="deliver_price">
+                            <p v-show="selected_price > 0"><span class="font-n">¥</span><span class="selected_price">{{selected_price}}</span></p>
+                            <p :class='{ "small": selected_price > 0 }'>另需配送费¥{{shop.deliver.price}}</p>
+                        </div>
                     </div>
                     <div class="g_c_right">
                         <div>¥0起送</div>
@@ -67,11 +107,15 @@
                 </div>
             </footer>
         </div>
+
+        <mMask ref="mask" :show="show_mask" @close="toggleCart" />
     </div>
 </template>
 <script>
 import GoogdList from '@/views/Shop/Children/GoodsList'
 import { mapGetters } from 'vuex'
+import { _throttle, _debounce, getScrollTop } from '@/common/javascript/util.js'
+import mMask from '@/components/Mask/Mask'
 export default {
     data() {
         return {
@@ -111,11 +155,10 @@ export default {
                     limit: 0,       // 起送费
                     price: 6,       // 配送费
                 }
-            }
+            },
+            show_cart: false,
+            show_mask: false
         }
-    },
-    created() {
-        
     },
     mounted() {
         new Swiper('.s_m_discount', {
@@ -123,6 +166,28 @@ export default {
             loop: true,
             autoplay: 1000,
         });
+    },
+    computed: {
+        cart() {
+            let _cart = this.$store.state.cart[this.shop._id],
+                temp = [];
+            if (_cart) {
+                Object.keys(_cart).forEach(i => {
+                    Object.keys(_cart[i]).forEach(food => {
+                        temp.push({ food_name: food, ..._cart[i][food] })
+                    })
+                })
+            }
+            return temp
+        }
+    },
+    watch: {
+        selected_count(val) {
+            if (val <= 0) {
+                this.show_cart = false,
+                this.show_mask = false
+            }
+        }
     },
     methods: {
         switch_tip(idx, c_idx) {
@@ -132,27 +197,41 @@ export default {
 
         get_selected() {
             // 获取选择的商品
-            let selected = this.$store.getters.get_cart(this.shop._id);
+            let selected = this.$store.getters.cart(this.shop._id);
             let count = 0,
                 price = 0;
+            
             for(let i in selected) {
                 for (let f in selected[i]) {
-                    count += selected[i][f].count;
-                    price = selected[i][f].count * selected[i][f].price;
+                    if (selected[i][f].count > 0) {
+                        count += selected[i][f].count;
+                        price += selected[i][f].count * selected[i][f].price;
+                    }
                 }
             }
             this.selected_count = count;
             this.selected_price = price;
+        },
+
+        toggleCart() {
+            if(this.cart.length > 0) {
+                this.show_mask = !this.show_cart
+                this.show_cart = !this.show_cart;
+            }
+        },
+
+        handleSetCart(count, food_idx, food_name, food_price, cate_idx, cate) {
+            this.$refs.goodList.set_to_cart(count, food_idx, food_name, food_price, cate_idx, cate)
         }
     },
     components: {
         GoogdList,
+        mMask,
     }
 }
 </script>
 <style lang="scss" scoped>
 @import 'src/common/style/mixin.scss';
-
 .shop_meta {
     @include flexBox(row, flex-start);
     .shop_meta_left {
@@ -161,20 +240,18 @@ export default {
     .shop_meta_right {
     }
 }
-
 #shop {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     > div {
-        width: 100%;
-        height: 100%;
-        @include flexBox(column);
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
     }
     header {
-        width: 100%;
-        padding-left: 10px;
         flex: 0 0 130px;
+        padding-left: 10px;
         background-color: rgb(46, 47, 59);
         .back {
             width: 100%;
@@ -231,8 +308,9 @@ export default {
         }
     }
     article {
-        flex: 1;
         @include flexBox(column, flex-start, flex-start);
+        height: 100%;
+        flex: 1 0 auto;
     }
     .article_title {
         position: relative;
@@ -279,7 +357,7 @@ export default {
     .article_content {
         flex: 1;
         width: 100vw;
-        overflow-x: hidden;
+        overflow: hidden;
         .content_wrap {
             @include flexBox(row, flex-start, center, nowrap);
             width: 100vw;
@@ -297,7 +375,10 @@ export default {
         left: 0;
         bottom: 0;
         width: 100%;
+        z-index: 999;
         .goods_cart {
+            position: relative;
+            z-index: 999;
             @include flexBox(row, space-between);
             width: 100%;
             background: #3b3b3c;
@@ -321,9 +402,18 @@ export default {
                     @include count;
                 }
                 .deliver_price {
-                    padding-left: 60px;
+                    padding-left: 70px;
                     font-size: 14px;
                     color: #999;
+                    > p:first-child {
+                        color: #fff;
+                        .selected_price {
+                            font-size: 24px;
+                        }
+                    }
+                    > p.small {
+                        font-size: 11px;
+                    }
                 }
             }
             .g_c_right {
@@ -337,9 +427,62 @@ export default {
                 }
             }
         }
+        .cart_detail {
+            position: absolute;
+            bottom: 50px;
+            left: 0;
+            width: 100%;
+            z-index: 98;
+            background: #fff;
+
+            .cart_title {
+                height: 30px;
+                padding: 4px 15px;
+                line-height: 30px;
+                font-size: 12px;
+                background: #F4F4F4;
+                @include flexBox(row, space-between)
+            }
+            .cart_content {
+                .cart_item {
+                    padding: 15px;
+                    @include flexBox(row, space-between);
+                    background: #fff;
+                    border-bottom: 1ps solid #aaa;
+                    .c_i_left {
+                        flex: 1;
+                        margin-right: 15px;
+                        @include flexBox(row, space-between);
+                        .food_standard {
+                            font-size: 12px;
+                            color: #999;
+                        }
+                        .c_i_l_price {
+                            color: #FB4E44;
+
+                        }
+                    }
+                    .c_i_right {
+                        min-width: 80px;
+                        @include flexBox(row, space-between);
+                        .img_goods_del {}
+                        .goods_count {}
+                        .img_goods_add {}
+                    }
+                }
+            }
+        }
     }
 }
 
-
+.slideUp-enter-active,
+.slideUp-leave-active {
+    transition: all .4s;
+}
+.slideUp-enter,
+.slideUp-leave-to {
+    transform: translateY(50px);
+    opacity: 0;
+}
 
 </style>

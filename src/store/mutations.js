@@ -19,7 +19,7 @@ const mutations = {
         state.last_addr_edit_route = { route, address }
     },
 
-    set_goods_to_cart: (state, {shop_id, data_obj}) => {
+    set_goods_to_cart(state, {shop_id, data_obj}) {
         data_obj ? (state.cart[shop_id] = data_obj) : delete state.cart[shop_id];
     }
 
