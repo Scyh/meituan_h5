@@ -3,7 +3,7 @@
         <div id="scroll_wrap" ref="scroll_wrap">
             <header>
                 <!-- 返回 -->
-                <div class="back"><i class="iconfont iconarrowdown"></i></div>
+                <div class="back" @click="back"><i class="iconfont iconarrowdown"></i></div>
                 <div class="shop_meta">
                     <div class="shop_meta_left">
                         <img src="">
@@ -40,7 +40,7 @@
                 <div class="article_content">
                     <div class="content_wrap" :style="'transform: translateX(-'+ title_tip_distance +')'">
                         <section ref="1">
-                            <GoogdList ref="goodList" :shop_id="shop._id" @selected="get_selected"></GoogdList>
+                            <GoogdList ref="goodList" :shop_id="shop._id" @selected="get_selected" @show_food_modal="handle_show_modal"></GoogdList>
                         </section>
                         <section ref="2">22222222222222222222222</section>
                         <section ref="3">333333333333333333333</section>
@@ -54,7 +54,7 @@
                     <div class="cart_detail" v-if="show_cart">
                         <div class="cart_title">
                             <span>购物车</span>
-                            <span>清空购物车</span>
+                            <span @click="clear_cart">清空购物车</span>
                         </div>
                         <div class="cart_content">
                             <template v-if="cart.length > 0">
@@ -68,8 +68,8 @@
                                             <div class="c_i_l_price">¥{{i.price}}</div>
                                         </div>
                                         <div class="c_i_right">
-                                            <i class="img_goods_del" @click="handleSetCart(-1,i.food_idx,i.food_name,i.price,i.cate_idx,i.cate)"></i>
-                                                <span class="goods_count" @click="handleSetCart(1,i.food_idx,i.food_name,i.price,i.cate_idx,i.cate)">{{i.count}}</span>
+                                            <i class="img_goods_del" @click="handle_set_cart(false,-1,i.food_idx,i.food_name,i.price,i.cate_idx,i.cate)"></i>
+                                                <span class="goods_count" @click="handle_set_cart(false,1,i.food_idx,i.food_name,i.price,i.cate_idx,i.cate)">{{i.count}}</span>
                                             <i class="img_goods_add"></i>
                                         </div>
                                     </div>
@@ -90,25 +90,46 @@
                 </transition>
 
                 <div class="goods_cart">
-                    <div class="g_c_left" @click="toggleCart">
+                    <div class="g_c_left" @click="toggle_cart">
                         <div class="cart_img_wrap">
                             <div :class="['cart_img', selected_count > 0 ? 'img_cart_has' : 'img_cart_none']"></div>
                             <i v-if="selected_count > 0" class="selected_count">{{selected_count}}</i>
                         </div>
-                        
                         <div class="deliver_price">
                             <p v-show="selected_price > 0"><span class="font-n">¥</span><span class="selected_price">{{selected_price}}</span></p>
                             <p :class='{ "small": selected_price > 0 }'>另需配送费¥{{shop.deliver.price}}</p>
                         </div>
                     </div>
                     <div class="g_c_right">
-                        <div>¥0起送</div>
+                        <div v-if="selected_price <= 0">¥{{shop.deliver.limit}}起送</div>
+                        <div v-else-if="selected_price > 0 && shop.deliver.limit > selected_price">还差{{shop.deliver.limit - selected_price}}起送</div>
+                        <div class="settle_account" v-else>去结算</div>
                     </div>
                 </div>
             </footer>
         </div>
 
-        <mMask ref="mask" :show="show_mask" @close="toggleCart" />
+        <div class="food_modal" v-show="Object.keys(food_detail).length > 0" @click="food_detail = {}">
+            <transition name="scale">
+                <div v-show="Object.keys(food_detail).length > 0" @click="food_detail = {}">
+                   <div class="modal_top">
+                    <div class="food_img"></div>
+                    <div class="food_info">
+                        <p class="f_i_name">{{food_detail.name}}</p>
+                        <p class="f_i_meta"><span>月售{{food_detail.sale}}</span><span>赞{{food_detail.zan}}</span></p>
+                        <p class="f_i_intro">{{food_detail.intro}}</p>
+                    </div>
+                    <div class="food_price">
+                        <span class="price">¥{{food_detail.price}}</span>
+                        <span class="to_cart" @click="handle_set_cart(false, 1, food_detail.food_idx, food_detail.name, food_detail.price, food_detail.cate_idx, food_detail.cate, food_detail.standard, food_detail.is_discount, food_detail.old_price, food_detail.limit)">加入购物车</span>
+                    </div>
+                </div>
+                <div class="modal_bottom"></div>
+                </div>
+            </transition>
+        </div>
+
+        <mMask ref="mask" :show="show_mask" @close="toggle_cart" />
     </div>
 </template>
 <script>
@@ -116,6 +137,7 @@ import GoogdList from '@/views/Shop/Children/GoodsList'
 import { mapGetters } from 'vuex'
 import { _throttle, _debounce, getScrollTop } from '@/common/javascript/util.js'
 import mMask from '@/components/Mask/Mask'
+import { back } from '@/components/mixin.js';
 export default {
     data() {
         return {
@@ -124,6 +146,8 @@ export default {
             current_content_distance: '0',
             selected_count: 0,
             selected_price: 0,
+            selected_old_price: 0,  // 打折之前的总原价
+            has_discount_goods: false,  // 是否有打折商品
             shop: {
                 _id: 111,
                 shop_brand_img: '',
@@ -152,12 +176,14 @@ export default {
                     time: '30分钟',
                     start_time: '10:00',    // 配送时间
                     end_time: '21:59',      // 配送时间
-                    limit: 0,       // 起送费
+                    limit: 20,       // 起送费
                     price: 6,       // 配送费
                 }
             },
             show_cart: false,
-            show_mask: false
+            show_mask: false,
+            cart: [],    // 购物车详情
+            food_detail: {}
         }
     },
     mounted() {
@@ -168,19 +194,21 @@ export default {
         });
     },
     computed: {
-        cart() {
-            let _cart = this.$store.state.cart[this.shop._id],
-                temp = [];
-            if (_cart) {
-                Object.keys(_cart).forEach(i => {
-                    Object.keys(_cart[i]).forEach(food => {
-                        temp.push({ food_name: food, ..._cart[i][food] })
-                    })
-                })
-            }
-            return temp
-        }
+        // cart() {
+        //     let _cart = this.$store.state.cart[this.shop._id],
+        //         temp = [];
+        //     console.log(_cart)
+        //     if (_cart) {
+        //         Object.keys(_cart).forEach(i => {
+        //             Object.keys(_cart[i]).forEach(food => {
+        //                 temp.push({ food_name: food, ..._cart[i][food] })
+        //             })
+        //         })
+        //     }
+        //     return temp
+        // }
     },
+    mixins: [back],
     watch: {
         selected_count(val) {
             if (val <= 0) {
@@ -199,30 +227,70 @@ export default {
             // 获取选择的商品
             let selected = this.$store.getters.cart(this.shop._id);
             let count = 0,
-                price = 0;
+                price = 0,
+                old_price = 0;
             
             for(let i in selected) {
                 for (let f in selected[i]) {
                     if (selected[i][f].count > 0) {
                         count += selected[i][f].count;
-                        price += selected[i][f].count * selected[i][f].price;
+
+                        // 判断商品是否打折     
+                        if (selected[i][f].is_discount) {
+                            // 判断当前的数量是否大于限制数量
+                            if(selected[i][f].limit) {
+                                if (selected[i][f].count <= selected[i][f].limit) {
+                                    price += selected[i][f].count * selected[i][f].price;            
+                                } else {
+                                    price += selected[i][f].limit * selected[i][f].price + (selected[i][f].count - selected[i][f].limit) * selected[i][f].old_price;
+                                }
+                            }
+                            old_price += selected[i][f].count * selected[i][f].old_price;
+                        } else {
+                            price += selected[i][f].count * selected[i][f].price;
+                        }
                     }
                 }
             }
             this.selected_count = count;
             this.selected_price = price;
+            this.selected_old_price = old_price;
+            this.set_cart_detail(selected);
         },
 
-        toggleCart() {
+        toggle_cart() {
             if(this.cart.length > 0) {
                 this.show_mask = !this.show_cart
                 this.show_cart = !this.show_cart;
             }
         },
 
-        handleSetCart(count, food_idx, food_name, food_price, cate_idx, cate) {
-            this.$refs.goodList.set_to_cart(count, food_idx, food_name, food_price, cate_idx, cate)
+        handle_set_cart(clear, count, food_idx, food_name, food_price, cate_idx, cate, food_standard, food_is_discount,food_old_price,food_limit) {
+            clear = !!clear
+            this.$refs.goodList.set_to_cart(clear, count, food_idx, food_name, food_price, cate_idx, cate, food_standard, food_is_discount,food_old_price,food_limit)
+        },
+
+        set_cart_detail(_cart) {
+            let temp = [];
+            if (_cart) {
+                Object.keys(_cart).forEach(i => {
+                    Object.keys(_cart[i]).forEach(food => {
+                        temp.push({ food_name: food, ..._cart[i][food] })
+                    })
+                })
+            }
+            this.cart = temp
+        },
+
+        clear_cart() {
+            this.handle_set_cart(true)
+        },
+
+        handle_show_modal(food) {
+            console.log(food)
+            this.food_detail = { ...food }
         }
+
     },
     components: {
         GoogdList,
@@ -423,7 +491,12 @@ export default {
                 > div {
                     height: 50px;
                     line-height: 50px;
-                    padding: 0 20px;
+                    padding: 0 30px;
+                }
+                .settle_account {
+                    color: #333;
+                    background: #f8c74e;
+                    font-weight: normal;
                 }
             }
         }
@@ -465,9 +538,6 @@ export default {
                     .c_i_right {
                         min-width: 80px;
                         @include flexBox(row, space-between);
-                        .img_goods_del {}
-                        .goods_count {}
-                        .img_goods_add {}
                     }
                 }
             }
@@ -475,14 +545,102 @@ export default {
     }
 }
 
+.food_modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    .modal_top {
+        min-width: 84vw;
+        max-width: 88vw;
+        height: 50vh;
+        margin-top: 15vh;
+        background: #fff;
+        border-radius: 25px;
+        @include flexBox(column);
+        .food_img {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            background-image: url('~src/assets/food_img.png');
+            background-size: cover;
+            border-top-left-radius: 25px;
+            border-top-right-radius: 25px;
+        }
+        .food_info {
+            flex: 0 0 75px;
+            width: 100%;
+            padding: 10px 0 0 0;
+            overflow-y: scroll;
+            .f_i_name {
+                margin-bottom: 2px;
+                padding: 0 15px;
+                font-weight: 600;
+            }
+            .f_i_meta {
+                padding: 0 15px;
+                font-size: 12px;
+                color: #666;
+                > span:not(:last-child) {
+                    margin-right: 10px;
+                }
+            }
+            .f_i_intro {
+                margin: 15px 0 0 0;
+                padding: 0 15px;
+                font-size: 12px;
+                color: #666;
+            }
+        }
+        .food_price {
+            @include flexBox(row, space-between);
+            flex: 0 0 45px;
+            width: 100%;
+            padding: 0 15px;
+            box-sizing: border-box;
+            .price {
+                font-size: 24px;
+                color: #fb4e44
+            }
+            .to_cart {
+                display: inline-block;
+                padding: 0 15px;
+                height: 25px;
+                line-height: 25px;
+                font-size: 12px;
+                text-align: center;
+                background: #FFD161;
+                background-image: linear-gradient(-135deg, #FFBD27 0%, #FFD161 100%);
+                border-radius: 25px;
+            }
+        }
+    }
+    .modal_bottom {
+        width: 40px;
+        height: 40px;
+        margin: 30px auto 0;
+        background: url('~src/assets/close.png') no-repeat;
+        background-size: cover;
+    }
+}
+
 .slideUp-enter-active,
-.slideUp-leave-active {
-    transition: all .4s;
+.slideUp-leave-active,
+.scale-enter-active,
+.scale-leave-active {
+    transition: all .2s;
 }
 .slideUp-enter,
 .slideUp-leave-to {
-    transform: translateY(50px);
+    transform: translateY(80%);
     opacity: 0;
 }
 
+.scale-enter,
+.scale-leave-to {
+    transform: scale(0.3);
+    opacity: 0;
+}
 </style>

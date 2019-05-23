@@ -1,0 +1,1568 @@
+{
+    "nav": ["热销", "美味汉堡/卷", "炸鸡啤酒", "鸡翅鸡排", "小食/配餐", "甜品/冰淇淋", "缤纷饮料", "K 咖啡", "现熬好粥", "美味早餐", "夜宵套餐", "夜宵单品"],
+    "content": [
+        {
+            "category": "热销",
+            "list": [
+                {
+                    "name": "二块新奥尔良烤翅T",
+                    "intro": "鲜嫩多汁，具烧烤香和甜辣味,主要原料:鸡翅",
+                    "sale": 923,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "鸡翅鸡排",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 12.5,
+                    "specification": [
+                        {
+                            "title": "规格",
+                            "content": [
+                                { "name": "大(份)", "price": 14.5, "old_price": 14.5, "is_discount": false },
+                                { "name": "小(份)", "price": 11.5, "old_price": 11.5, "is_discount": false }
+                            ]
+                        },
+                        {
+                            "title": "口味",
+                            "cotent": [
+                                { "name": "甜辣" },
+                                { "name": "孜然" },
+                                { "name": "微辣" },
+                                { "name": "麻辣" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "二块香辣鸡翅(炸鸡)T2",
+                    "intro": "香辣多汁，口感鲜美。主要原料:鸡翅，小麦粉",
+                    "sale": 815,
+                    "zan": 1,
+                    "is_sale_out": false,
+                    "cate": "鸡翅鸡排",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "老北京鸡肉卷T",
+                    "intro": "选用无骨鸡腿柳条、搭配传统甜面酱和新鲜爽脆黄瓜，酱香浓郁的老北京味。,主要原料:面饼，鸡腿肉条，黄瓜段，京葱丝",
+                    "sale": 565,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "黄金鸡块5块装T7",
+                    "intro": "精选鸡肉烹炸，搭配调味酱，口感香鲜酥脆。,主要原料:黄金鸡块",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                }
+            ]
+        },
+        {
+            "category": "美味汉堡/卷",
+            "list": [
+                {
+                    "name": "劲脆鸡腿堡套餐T",
+                    "intro": "劲脆鸡腿堡1份+波纹霸王薯条(中)1份+九珍果汁饮料1杯",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                },
+                {
+                    "name": "奥尔良烤鸡腿堡套餐T",
+                    "intro": "新奥尔良鸡腿堡1份+波纹霸王薯条(中)1份+九珍果汁饮料1杯",
+                    "sale": 66,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": true,
+                    "price": 25,
+                    "old_price": 36,
+                    "limit": null
+                },
+                {
+                    "name": "香辣鸡腿堡套餐T",
+                    "intro": "香辣鸡腿堡1份+波纹霸王薯条(中)1份+九珍果汁饮料1杯",
+                    "sale": 36,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                },
+                {
+                    "name": "辣翅九珍套餐T",
+                    "intro": "香辣鸡翅2块+九珍果汁1杯",
+                    "sale": 11,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": true,
+                    "price": 23.5,
+                    "old_price": 27,
+                    "limit": 2
+                },
+                {
+                    "name": "奥堡九珍套餐ST",
+                    "intro": "升级版新奥尔良烤鸡腿堡1个+九珍果汁1杯",
+                    "sale": 53,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 31.5
+                },
+                {
+                    "name": "香辣鸡腿堡S豆泥餐T",
+                    "intro": "升级版香辣鸡腿堡1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+                    "sale": 9,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 39
+                },
+                {
+                    "name": "劲脆鸡腿堡S豆泥餐T",
+                    "intro": "升级版劲脆鸡腿堡1个+醇香土豆泥1份+黄金鸡块（5块）+九珍果汁饮料1杯",
+                    "sale": 14,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 39
+                },
+                {
+                    "name": "老北京鸡肉卷T",
+                    "intro": "选用无骨鸡腿柳条、搭配传统甜面酱和新鲜爽脆黄瓜，酱香浓郁的老北京味。,主要原料:面饼，鸡腿肉条，黄瓜段，京葱丝",
+                    "sale": 565,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "劲脆鸡腿堡ST",
+                    "intro": "整块无骨鸡腿肉,浓郁汉堡酱，香脆鲜嫩多汁。,主要原料:鸡腿肉，面包，生菜",
+                    "sale": 378,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味汉堡/卷",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 17   
+                }
+            ]
+        },
+        {
+            "category": "炸鸡啤酒",
+            "list": [
+                {
+                    "name": "炸鸡啤酒超级桶T",
+                    "intro": "八块香辣鸡翅+八块新奥尔良烤翅+百威啤酒4罐 未成年人请勿饮酒，孕妇和身体不适者不宜饮酒。喝酒请勿驾车，请适度享用美酒，产品及包装以实物为准。",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "炸鸡啤酒",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                },
+                {
+                    "name": "炸鸡啤酒超级桶T2",
+                    "intro": "八块香辣鸡翅+八块新奥尔良烤翅+百威啤酒4罐 未成年人请勿饮酒，孕妇和身体不适者不宜饮酒。喝酒请勿驾车，请适度享用美酒，产品及包装以实物为准。",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "炸鸡啤酒",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                },
+                {
+                    "name": "炸鸡啤酒超级桶T3",
+                    "intro": "八块香辣鸡翅+八块新奥尔良烤翅+百威啤酒4罐 未成年人请勿饮酒，孕妇和身体不适者不宜饮酒。喝酒请勿驾车，请适度享用美酒，产品及包装以实物为准。",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "炸鸡啤酒",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                },
+                {
+                    "name": "炸鸡啤酒超级桶T4",
+                    "intro": "八块香辣鸡翅+八块新奥尔良烤翅+百威啤酒4罐 未成年人请勿饮酒，孕妇和身体不适者不宜饮酒。喝酒请勿驾车，请适度享用美酒，产品及包装以实物为准。",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "炸鸡啤酒",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": true,
+                    "price": 20.5,
+                    "old_price": 26,
+                    "limit": 1
+                },
+                {
+                    "name": "炸鸡啤酒超级桶T5",
+                    "intro": "八块香辣鸡翅+八块新奥尔良烤翅+百威啤酒4罐 未成年人请勿饮酒，孕妇和身体不适者不宜饮酒。喝酒请勿驾车，请适度享用美酒，产品及包装以实物为准。",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "炸鸡啤酒",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                },
+                {
+                    "name": "炸鸡啤酒超级桶T6",
+                    "intro": "八块香辣鸡翅+八块新奥尔良烤翅+百威啤酒4罐 未成年人请勿饮酒，孕妇和身体不适者不宜饮酒。喝酒请勿驾车，请适度享用美酒，产品及包装以实物为准。",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "炸鸡啤酒",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                },
+                {
+                    "name": "炸鸡啤酒超级桶T7",
+                    "intro": "八块香辣鸡翅+八块新奥尔良烤翅+百威啤酒4罐 未成年人请勿饮酒，孕妇和身体不适者不宜饮酒。喝酒请勿驾车，请适度享用美酒，产品及包装以实物为准。",
+                    "sale": 71,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "炸鸡啤酒",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 36
+                }
+            ]
+        },
+        {
+            "category": "鸡翅鸡排",
+            "list": [
+                {
+                    "name": "二块新奥尔良烤翅T",
+                    "intro": "鲜嫩多汁，具烧烤香和甜辣味,主要原料:鸡翅",
+                    "sale": 923,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "鸡翅鸡排",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 12.5,
+                    "specification": [
+                        {
+                            "title": "规格",
+                            "content": [
+                                { "name": "大(份)", "price": 14.5, "old_price": 14.5, "is_discount": false },
+                                { "name": "小(份)", "price": 11.5, "old_price": 11.5, "is_discount": false }
+                            ]
+                        },
+                        {
+                            "title": "口味",
+                            "cotent": [
+                                { "name": "甜辣" },
+                                { "name": "孜然" },
+                                { "name": "微辣" },
+                                { "name": "麻辣" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "二块香辣鸡翅(炸鸡)T2",
+                    "intro": "香辣多汁，口感鲜美。主要原料:鸡翅，小麦粉",
+                    "sale": 815,
+                    "zan": 1,
+                    "is_sale_out": false,
+                    "cate": "鸡翅鸡排",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "十块新奥尔良烤翅T3",
+                    "intro": "10块新奥尔良烤翅",
+                    "sale": 169,
+                    "zan": 1,
+                    "is_sale_out": false,
+                    "cate": "鸡翅鸡排",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 49
+                },
+                {
+                    "name": "藤椒肯大大鸡排T4",
+                    "intro": ",主要原料:鸡排，小麦粉",
+                    "sale": 101,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "鸡翅鸡排",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "20块香辣鸡翅T5",
+                    "intro": "香辣鸡翅20块",
+                    "sale": 101,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "鸡翅鸡排",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                }
+            ]
+        },
+        {
+            "category": "小食/配餐",
+            "list": [
+                {
+                    "name": "黄金鸡块5块装T6",
+                    "intro": "精选鸡肉烹炸，搭配调味酱，口感香鲜酥脆。,主要原料:黄金鸡块",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "黄金鸡块5块装T7",
+                    "intro": "精选鸡肉烹炸，搭配调味酱，口感香鲜酥脆。,主要原料:黄金鸡块",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "黄金鸡块5块装T8",
+                    "intro": "精选鸡肉烹炸，搭配调味酱，口感香鲜酥脆。,主要原料:黄金鸡块",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "黄金鸡块5块装T9",
+                    "intro": "精选鸡肉烹炸，搭配调味酱，口感香鲜酥脆。,主要原料:黄金鸡块",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "黄金鸡块5块装T10",
+                    "intro": "精选鸡肉烹炸，搭配调味酱，口感香鲜酥脆。,主要原料:黄金鸡块",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "劲爆鸡米花T11",
+                    "intro": "劲爆鸡米花T",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "芙蓉荟蔬汤T12",
+                    "intro": "选用蔬菜配以蛋花精制而成,主要原料:鸡蛋、蔬菜（菠菜、裙带菜、胡萝卜、香菇）、水",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                },
+                {
+                    "name": "醇香土豆泥T13",
+                    "intro": "细腻香浓的土豆泥加上润滑可口的鸡汁,主要原料:土豆泥粉，鸡汁粉，淡奶油，黄油",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "小食/配餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 11.5
+                }
+            ]
+        },
+        {
+            "category": "甜品/冰淇淋",
+            "list": [
+                {
+                    "name": "葡式蛋挞经典2只装T",
+                    "intro": "葡式蛋挞经典2只装",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "葡式蛋挞经典2只装T2",
+                    "intro": "葡式蛋挞经典2只装",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "葡式蛋挞经典2只装T3",
+                    "intro": "葡式蛋挞经典2只装",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "葡式蛋挞经典2只装T4",
+                    "intro": "葡式蛋挞经典2只装",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "葡式蛋挞经典2只装T5",
+                    "intro": "葡式蛋挞经典2只装",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "葡式蛋挞(经典)6只T6",
+                    "intro": "葡式蛋挞经典6只装",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "葡式蛋挞经典1只装T7",
+                    "intro": "葡式蛋挞经典1只装",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                },
+                {
+                    "name": "红豆派T8",
+                    "intro": "精选富含高营养价值的红豆，精心熬煮制成浓稠绵蜜的红豆酱，再将其包裹于外表金黄的小酥皮中，特制成酥情蜜意红豆派。口感饱满且富有层次。,主要原料:红豆派",
+                    "sale": 316,
+                    "zan": 2,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13
+                }
+            ]
+        },
+        {
+            "category": "缤纷饮料",
+            "list": [
+                {
+                    "name": "恋柠恋桔乌龙茶T",
+                    "intro": "主要原料：东方美人乌龙茶，新鲜柠檬，新鲜青金桔，白砂糖",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "缤纷饮料",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13.5
+                },
+                {
+                    "name": "恋柠恋桔乌龙茶T1",
+                    "intro": "主要原料：东方美人乌龙茶，新鲜柠檬，新鲜青金桔，白砂糖",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "缤纷饮料",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13.5
+                },
+                {
+                    "name": "恋柠恋桔乌龙茶T2",
+                    "intro": "主要原料：东方美人乌龙茶，新鲜柠檬，新鲜青金桔，白砂糖",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "缤纷饮料",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13.5
+                },
+                {
+                    "name": "恋柠恋桔乌龙茶T3",
+                    "intro": "主要原料：东方美人乌龙茶，新鲜柠檬，新鲜青金桔，白砂糖",
+                    "sale": 389,
+                    "zan": 3,
+                    "is_sale_out": false,
+                    "cate": "缤纷饮料",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 13.5
+                }
+            ]
+        },
+        {
+            "category": "K 咖啡",
+            "list": [
+                {
+                    "name": "冰拿铁(大)T1",
+                    "intro": "精选阿拉比卡咖啡豆，新鲜现磨；规格：同堂食大杯,主要原料:焙炒咖啡豆，牛奶，水",
+                    "sale": 26,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "甜品/冰淇淋",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "冰拿铁(大)T2",
+                    "intro": "精选阿拉比卡咖啡豆，新鲜现磨；规格：同堂食大杯,主要原料:焙炒咖啡豆，牛奶，水",
+                    "sale": 26,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "K 咖啡",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "冰拿铁(大)T3",
+                    "intro": "精选阿拉比卡咖啡豆，新鲜现磨；规格：同堂食大杯,主要原料:焙炒咖啡豆，牛奶，水",
+                    "sale": 26,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "K 咖啡",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "冰拿铁(大)T4",
+                    "intro": "精选阿拉比卡咖啡豆，新鲜现磨；规格：同堂食大杯,主要原料:焙炒咖啡豆，牛奶，水",
+                    "sale": 26,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "K 咖啡",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "冰拿铁(大)T5",
+                    "intro": "精选阿拉比卡咖啡豆，新鲜现磨；规格：同堂食大杯,主要原料:焙炒咖啡豆，牛奶，水",
+                    "sale": 26,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "K 咖啡",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "冰拿铁(大)T6",
+                    "intro": "精选阿拉比卡咖啡豆，新鲜现磨；规格：同堂食大杯,主要原料:焙炒咖啡豆，牛奶，水",
+                    "sale": 26,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "K 咖啡",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                },
+                {
+                    "name": "冰拿铁(大)T7",
+                    "intro": "精选阿拉比卡咖啡豆，新鲜现磨；规格：同堂食大杯,主要原料:焙炒咖啡豆，牛奶，水",
+                    "sale": 26,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "K 咖啡",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-23:59" },
+                        { "week_day": 2, "day_time": "00:00-23:59" },
+                        { "week_day": 3, "day_time": "00:00-23:59" },
+                        { "week_day": 4, "day_time": "00:00-23:59" },
+                        { "week_day": 5, "day_time": "00:00-23:59" },
+                        { "week_day": 6, "day_time": "00:00-23:59" },
+                        { "week_day": 7, "day_time": "00:00-23:59" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 19
+                }
+            ]
+        },
+        {
+            "category": "现熬好粥",
+            "list": [
+                {
+                    "name": "冬菇滑鸡粥T1",
+                    "intro": "现熬浓稠好粥底中，加入鸡腿肉、冬菇块，与蚝汁一起蒸煮入味。鲜、嫩、香。,主要原料:大米、冬菇、鸡肉、生菜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "现熬好粥",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 9.5
+                },
+                {
+                    "name": "牛肉蛋花粥T2",
+                    "intro": "现熬浓稠好粥底中，加入鸡腿肉、冬菇块，与蚝汁一起蒸煮入味。鲜、嫩、香。,主要原料:大米、冬菇、鸡肉、生菜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "现熬好粥",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 9.5
+                },
+                {
+                    "name": "雪菜笋丁鸡肉粥T3",
+                    "intro": "咸鲜适口,主要原料:大米、雪菜、鸡肉、笋丁、胡萝卜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "现熬好粥",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 9.5
+                },
+                {
+                    "name": "冬菇滑鸡粥T4",
+                    "intro": "现熬浓稠好粥底中，加入鸡腿肉、冬菇块，与蚝汁一起蒸煮入味。鲜、嫩、香。,主要原料:大米、冬菇、鸡肉、生菜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "现熬好粥",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 9.5
+                }
+                
+            ]
+        },
+        {
+            "category": "美味早餐",
+            "list": [
+                {
+                    "name": "猪柳蛋帕尼拿铁餐ST1",
+                    "intro": "升级芝士猪柳蛋帕尼尼1份 + 拿铁（大）1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味早餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 30.5
+                },
+                {
+                    "name": "猪柳蛋帕尼拿铁餐ST2",
+                    "intro": "升级芝士猪柳蛋帕尼尼1份 + 拿铁（大）1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味早餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 30.5
+                },
+                {
+                    "name": "猪柳蛋帕尼拿铁餐ST3",
+                    "intro": "升级芝士猪柳蛋帕尼尼1份 + 拿铁（大）1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味早餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 30.5
+                },
+                {
+                    "name": "猪柳蛋帕尼拿铁餐ST4",
+                    "intro": "升级芝士猪柳蛋帕尼尼1份 + 拿铁（大）1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味早餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 30.5
+                },
+                {
+                    "name": "猪柳蛋帕尼拿铁餐ST5",
+                    "intro": "升级芝士猪柳蛋帕尼尼1份 + 拿铁（大）1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味早餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 30.5
+                },
+                {
+                    "name": "猪柳蛋帕尼拿铁餐ST6",
+                    "intro": "升级芝士猪柳蛋帕尼尼1份 + 拿铁（大）1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "美味早餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "05:45-09:16" },
+                        { "week_day": 2, "day_time": "05:45-09:16" },
+                        { "week_day": 3, "day_time": "05:45-09:16" },
+                        { "week_day": 4, "day_time": "05:45-09:16" },
+                        { "week_day": 5, "day_time": "05:45-09:16" },
+                        { "week_day": 6, "day_time": "05:45-09:16" },
+                        { "week_day": 7, "day_time": "05:45-09:16" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 30.5
+                }
+            ]
+        },
+        {
+            "category": "夜宵套餐",
+            "list": [
+                {
+                    "name": "皮蛋瘦肉粥单人餐T1",
+                    "intro": "皮蛋瘦肉粥1份+安心大油条1根+热豆浆1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵套餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "皮蛋瘦肉粥单人餐T2",
+                    "intro": "皮蛋瘦肉粥1份+安心大油条1根+热豆浆1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵套餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "皮蛋瘦肉粥单人餐T3",
+                    "intro": "皮蛋瘦肉粥1份+安心大油条1根+热豆浆1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵套餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "皮蛋瘦肉粥单人餐T4",
+                    "intro": "皮蛋瘦肉粥1份+安心大油条1根+热豆浆1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵套餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "皮蛋瘦肉粥单人餐T5",
+                    "intro": "皮蛋瘦肉粥1份+安心大油条1根+热豆浆1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵套餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "皮蛋瘦肉粥单人餐T6",
+                    "intro": "皮蛋瘦肉粥1份+安心大油条1根+热豆浆1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵套餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "皮蛋瘦肉粥单人餐T7",
+                    "intro": "皮蛋瘦肉粥1份+安心大油条1根+热豆浆1杯",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵套餐",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                }
+            ]
+        },
+        {
+            "category": "夜宵单品",
+            "list": [
+                {
+                    "name": "冬菇滑鸡粥TN1",
+                    "intro": ",主要原料:大米、冬菇、鸡肉、生菜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵单品",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "九珍果汁饮料TN2",
+                    "intro": ",主要原料:大米、冬菇、鸡肉、生菜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵单品",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "醇豆浆(热)TN3",
+                    "intro": ",主要原料:大米、冬菇、鸡肉、生菜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵单品",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                },
+                {
+                    "name": "葡式蛋挞(经典)TN4",
+                    "intro": ",主要原料:大米、冬菇、鸡肉、生菜",
+                    "sale": 0,
+                    "zan": 0,
+                    "is_sale_out": false,
+                    "cate": "夜宵单品",
+                    "sale_time": [
+                        { "week_day": 1, "day_time": "00:00-05:45" },
+                        { "week_day": 2, "day_time": "00:00-05:45" },
+                        { "week_day": 3, "day_time": "00:00-05:45" },
+                        { "week_day": 4, "day_time": "00:00-05:45" },
+                        { "week_day": 5, "day_time": "00:00-05:45" },
+                        { "week_day": 6, "day_time": "00:00-05:45" },
+                        { "week_day": 7, "day_time": "00:00-05:45" }
+                    ],
+                    "is_specification": false,
+                    "is_discount": false,
+                    "price": 26
+                }
+            ]
+        }
+    ]
+}
