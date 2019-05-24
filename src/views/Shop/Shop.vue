@@ -42,7 +42,9 @@
                         <section ref="1">
                             <GoogdList ref="goodList" :shop_id="shop._id" @selected="get_selected" @show_food_modal="handle_show_modal"></GoogdList>
                         </section>
-                        <section ref="2">22222222222222222222222</section>
+                        <section ref="2">
+                            <Comments />
+                        </section>
                         <section ref="3">333333333333333333333</section>
                     </div>
                 </div>
@@ -134,6 +136,7 @@
 </template>
 <script>
 import GoogdList from '@/views/Shop/Children/GoodsList'
+import Comments from '@/views/Shop/Children/Comments'
 import { mapGetters } from 'vuex'
 import { _throttle, _debounce, getScrollTop } from '@/common/javascript/util.js'
 import mMask from '@/components/Mask/Mask'
@@ -294,6 +297,7 @@ export default {
     },
     components: {
         GoogdList,
+        Comments,
         mMask,
     }
 }
