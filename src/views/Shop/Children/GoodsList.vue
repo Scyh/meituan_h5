@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="goods_right">
                                     <div class="goods_name">{{food.name}}</div>
-                                    <div class="goods_intro">鲜嫩多汁，具烧烤香和甜辣味,主要原料:鸡翅</div>
+                                    <div class="goods_intro">{{food.intro}}</div>
                                     <div class="goods_meta"><span>月售{{food.sale}}</span>&nbsp;&nbsp;赞6</div>
                                     <div class="goods_price">
                                         <p><span>¥&nbsp;{{food.price}}</span><span class="goods_old_price" v-if="food.is_discount">¥{{food.old_price}}</span></p>
@@ -131,7 +131,8 @@ export default {
             let distance = ev.touches[0].pageY - this.move_last;
             this.direction = ev.touches[0].pageY > this.move_last;
             if (this.$refs.content.scrollTop <= 130) {
-                this.$parent.$refs.scroll_wrap.scrollTo(0, this.$parent.$refs.scroll_wrap.scrollTop - distance)    
+                this.$parent.$refs.scroll_wrap.scrollBy(0, distance * -1)
+                // this.$parent.$refs.scroll_wrap.scrollTo(0, this.$parent.$refs.scroll_wrap.scrollTop - distance)
             }
             this.move_last = ev.touches[0].pageY;
             this.move_last_scrollTop = this.$refs.content.scrollTop
@@ -147,7 +148,6 @@ export default {
                     if (that.$refs.content.scrollTop != that.move_last_scrollTop) {
                         if (that.$parent.$refs.scroll_wrap.scrollTop <= 130 && that.$refs.content.scrollTop <= 170) {
                             let distance = that.$refs.content.scrollTop - that.move_last_scrollTop
-                            console.log(distance)
                             that.$parent.$refs.scroll_wrap.scrollBy(0, distance);
                         }
                         that.move_last_scrollTop = that.$refs.content.scrollTop

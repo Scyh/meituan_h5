@@ -45,7 +45,7 @@
     </div>
 </template>
 <script>
-import citys from '@/views/SelectCity/city.json'
+import citys from '@/assets/city.json'
 import { loadMore } from '@/components/mixin'
 import { getOffsetTop } from '@/common/javascript/util'
 import { mapState } from 'vuex';

@@ -91,6 +91,7 @@ input::-webkit-input-placeholder {
     @include bg_img(15px, 15px, 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAAAXNSR0IArs4c6QAAApdJREFUSA21ljuLWlEQx+f6KhQsTKOrINokok0CwY0SttpecKv9LFvms6RKwD5VCBolkFgouBamMkHRQkELn5m/nLnc6917Vo0OyHnMnPk5c+c8DDpAarXaazYrbbfb99zG+Xellv3htm8YxjduK4VC4Zead20MVw0rqtXqHTcf+PdSZ2fRPXL/oVgsfrLM2bpPAhuNRmq1Wn1ky2ub9eGDus/nu8/n87/3lziAnL4bNvrM6Xuxb3zMmNM8Zvsyp/mrdZ0NqGBfGOa3Gp3aZ+iS195aoSYQaVyv1z/+N7L9P4dIvV7vW0mvRwzwzc4Ng2/4VPWwQ+2AqhpPLRD5z7r2WjFIIkTpX1p2DAObmsP+qaNlMhni70CdToc4PQ7TaDRKiUSCut0uTadTh14m+Hu+QYQlmXBrAQuHw5TNZon3l80sFotROp0mv99P7NCme2JQ8nB0OK60gshmsxmFQiEbFLBUKoXCoF6vR5PJROsHLESIs1ErSGO73bZB4/G4DTYYDLQ+lDIOoBzE2gX70GQyaUZ2IAz+r6RKtTBRAjoajWRIy+WSxmOcYAfLFkBcMQcJvplEtlgsKBAIUC6XcxSSxtlfAPsaA1O1XyDNZpPm8zkFg8FjoH0PlzIuT61gn1mrEd8M6W21WkdBwUKEFS2NldjUUvrWApFCkkgjkchzriq7ncrnXIctXW91bHpsard9hsMAMBTUZrNxgz7yS+CVVOmDmxXmcVy5waBHpMPhUAeD2Y5hnkUc5XeevNSNUefo3oEqEaK07zltR20qOHhO4BO+xc4Eqhu5zAZ4FpxFlK+y3PZwagIxUG+P23NEqnzY3jMOoEDxBuF+HeMTpQ4f1seT+DGLRiasrXoWXP4hbIWif86n/j9B9impQ3jfHQAAAABJRU5ErkJggg==');
 }
 .img_meituan {
+    display: inline-block;
     @include bg_img(50px, 15px, '~src/assets/meituan.png');
 }
 .img_pinpai {
@@ -147,11 +148,11 @@ input::-webkit-input-placeholder {
 }
 .img_jian {
     display: inline-block;
-    @include bg_img(14px, 14px, '~src/assets/meituan_jian.png');
+    @include bg_img(15px, 15px, '~src/assets/meituan_jian.png');
 }
 .img_zhe {
     display: inline-block;
-    @include bg_img(14px, 14px, '~src/assets/meituan_zhe.png');
+    @include bg_img(15px, 15px, '~src/assets/meituan_zhe.png');
 }
 .img_shop {
     display: inline-block;
@@ -183,14 +184,20 @@ input::-webkit-input-placeholder {
 .img_cart_has {
     @include bg_img(50px, 50px, '~src/assets/cart_has.png');
 }
-
+.img_zan {
+    display: inline-block;
+    @include bg_img(11px, 11px, '~src/assets/zan.png');
+}
+.img_label {
+    display: inline-block;
+    @include bg_img(11px, 11px, '~src/assets/label.png');
+}
 .f_l {
     float: left;
 }
 .f_r {
     float: right;
 }
-
 
 /* 全局变量 */
 $global_color: #ffd300;

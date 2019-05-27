@@ -45,7 +45,9 @@
                         <section ref="2">
                             <Comments />
                         </section>
-                        <section ref="3">333333333333333333333</section>
+                        <section ref="3">
+                            <ShopInfo />
+                        </section>
                     </div>
                 </div>
             </article>
@@ -137,6 +139,7 @@
 <script>
 import GoogdList from '@/views/Shop/Children/GoodsList'
 import Comments from '@/views/Shop/Children/Comments'
+import ShopInfo from '@/views/Shop/Children/ShopInfo'
 import { mapGetters } from 'vuex'
 import { _throttle, _debounce, getScrollTop } from '@/common/javascript/util.js'
 import mMask from '@/components/Mask/Mask'
@@ -290,7 +293,6 @@ export default {
         },
 
         handle_show_modal(food) {
-            console.log(food)
             this.food_detail = { ...food }
         }
 
@@ -298,6 +300,7 @@ export default {
     components: {
         GoogdList,
         Comments,
+        ShopInfo,
         mMask,
     }
 }
@@ -408,7 +411,7 @@ export default {
         }
         > .title_tip {
             width: 33.3%;
-            height: 1px;
+            height: 2px;
             left: 0;
             bottom: 0;
             position: absolute;
