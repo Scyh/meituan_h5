@@ -25,8 +25,17 @@ Vue.config.productionTip = false
 Vue.prototype.$tip = tip
 Vue.prototype.$apis = apis
 
-new Vue({
+const app = new Vue({
     store,
     router,
     render: h => h(App)
 }).$mount('#app')
+
+// 如果 JS 晚于 CSS 加载完成，那直接执行渲染
+if (process.env.NODE_ENV === 'production') {
+    if (window.STYLE_READY) {
+      app.$mount('#app')
+    }
+  } else {
+    app.$mount('#app')
+  }

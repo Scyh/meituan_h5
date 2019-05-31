@@ -1,5 +1,5 @@
 <template>
-    <div id="comments" ref="content">
+    <div id="comments" ref="content" :is_actice="is_actice">
         <header ref="header">
             <div class="header_left">
                 <div class="shop_score">4.3</div>
@@ -63,6 +63,7 @@ import star from '@/components/star/star'
 import Comments from '@/assets/comments.json'
 import { getStyle } from '@/common/javascript/util'
 export default {
+    props: ['idx'],
     data() {
         return {
             move_start: 0,
@@ -80,8 +81,16 @@ export default {
             _flag: true
         }
     },
+    computed: {
+        is_actice() {
+            let flag = this.idx === 2;
+            if (flag && this.comments_list.length <= 0) {
+                this.comments_list = Comments.slice(0);
+            }
+            return flag
+        }
+    },
     created() {
-        this.comments_list = Comments.slice(0);
     },
     watch: {
         comments_list(new_val, old_val) {

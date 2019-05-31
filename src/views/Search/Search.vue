@@ -3,7 +3,7 @@
 
         <!-- 头部信息栏 -->
         <header class="header">
-            <i class="img_left_arrow f_l" @click="back"></i>
+            <i class="img_left_arrow f_l" @click="back($router)"></i>
             <h5 class="text-c">搜索页</h5>
         </header>
 

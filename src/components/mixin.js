@@ -60,7 +60,8 @@ export const loadMore = {
 
 export const back = {
     methods: {
-        back() {
+        back(route) {
+            route.animate = 2;
             if (window.history.length <= 1) {
                 this.$router.push('/');
             } else {

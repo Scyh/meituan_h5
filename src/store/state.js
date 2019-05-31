@@ -1,6 +1,7 @@
 import { Store } from 'src/common/javascript/util';
 
 export const state =  {
+    loading: false, // 全局loading
     user_info: {
         name: '测试'
     },  // 用户信息
@@ -22,6 +23,8 @@ export const getters = {
     cart: state => shop_id => {
         return state.cart[shop_id] ? state.cart[shop_id] : null;
     },
+
+    pageChange: state => state.loading
 }
 
 /**

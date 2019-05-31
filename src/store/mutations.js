@@ -21,6 +21,10 @@ const mutations = {
 
     set_goods_to_cart(state, {shop_id, data_obj}) {
         data_obj ? (state.cart[shop_id] = data_obj) : delete state.cart[shop_id];
+    },
+
+    set_loading(state, flag) {
+        state.loading = flag ? flag : false;
     }
 
 };

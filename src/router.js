@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store'
+
+
 
 Vue.use(Router)
 
@@ -12,12 +15,13 @@ const router = new Router({
         {
             path: '/home',  // 首页
             name: 'home',
-            meta: { scroll: true },
+            meta: { scroll: true, animate: 1 },
             component: () => import(/* webpackChunkName: "home" */ '@/views/Home/Home.vue')
         },
         {
             path: '/search',    // 搜索页
             name: 'search',
+            meta: { animate: 1 },
             component: () => import(/* webpackChunkName: "search" */ '@/views/Search/Search.vue')
         },
         {
@@ -28,20 +32,20 @@ const router = new Router({
         {
             path: '/order',     // 订单列表
             name: 'order',
-            meta: { login: true, scroll: true },
+            meta: { login: true, scroll: true, animate: 1 },
             component: () => import(/* webpackChunkName: "order" */ '@/views/Order/Order')
         },
         {
             path: '/order_info',    // 订单详情
             name: 'order_info',
-            meta: { login: true, scroll: true },
+            meta: { login: true, scroll: true, animate: 1 },
             component: () => import(/* webpackChunkName: "order_info" */ '@/views/OrderInfo/OrderInfo')
         },
         {
             path: '/self',      // 个人主页
             component: () => import(/* webpackChunkName: "self" */ '@/App.vue'),
             // component: () => import(/* webpackChunkName: "self" */ '@/views/Self/Self'),
-            meta: { login: true },
+            meta: { login: true, animate: 1 },
             children: [
                 {
                     path: '',
@@ -72,24 +76,25 @@ const router = new Router({
         {
             path: '/agreement', // 美团协议
             name: 'agreement',
+            meta: { animate: 1 },
             component: () => import(/* webpackChunkName: "agreement" */ '@/views/Agreement/Agreement')
         },
         {
             path: '/location',  // 定位
             name: 'location',
-            meta: { scroll: true },
+            meta: { scroll: true, animate: 1 },
             component: () => import(/* webpackChunkName: "location" */ '@/views/Location/Location')
         },
         {
             path: '/select_city',  // 选择城市
             name: 'select_city',
-            meta: { scroll: true },
+            meta: { scroll: true, animate: 1 },
             component: () => import(/* webpackChunkName: "location" */ '@/views/SelectCity/SelectCity')
         },
         {
             path: '/shop/:id',
             name: 'shop_detail',
-            meta: { scroll: true },
+            meta: { scroll: true, animate: 1 },
             component: () => import(/* webpackChunkName: "shop_detail" */ '@/views/Shop/Shop'),
         }
     ],
@@ -102,8 +107,11 @@ const router = new Router({
 
 // 登录拦截
 router.beforeEach((to, from, next) => {
+    store.state.loading = true;
+    store.commit('set_loading', true)
     let $store = router && router.app.$store;
     if ($store) {
+        // $store.commit('set_loading', true)
         if (to.meta.login) {    // 需要验证登录
             $store.commit('set_last_route', to.fullPath);
             if ($store.getters.hasLogin) {  // 已经登录，跳转回页面
@@ -121,6 +129,10 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
+})
+
+router.afterEach(() => {
+    store.commit('set_loading', false)
 })
 
 export default router

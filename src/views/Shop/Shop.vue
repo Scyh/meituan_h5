@@ -3,7 +3,7 @@
         <div id="scroll_wrap" ref="scroll_wrap">
             <header>
                 <!-- 返回 -->
-                <div class="back" @click="back"><i class="iconfont iconarrowdown"></i></div>
+                <div class="back" @click="back($router)"><i class="iconfont iconarrowdown"></i></div>
                 <div class="shop_meta">
                     <div class="shop_meta_left">
                         <img src="">
@@ -40,13 +40,13 @@
                 <div class="article_content">
                     <div class="content_wrap" :style="'transform: translateX(-'+ title_tip_distance +')'">
                         <section ref="1">
-                            <GoogdList ref="goodList" :shop_id="shop._id" @selected="get_selected" @show_food_modal="handle_show_modal"></GoogdList>
+                            <GoogdList :idx="current_content_idx" ref="goodList" :shop_id="shop._id" @selected="get_selected" @show_food_modal="handle_show_modal"></GoogdList>
                         </section>
                         <section ref="2">
-                            <Comments />
+                            <Comments :idx="current_content_idx" />
                         </section>
                         <section ref="3">
-                            <ShopInfo />
+                            <ShopInfo :idx="current_content_idx" />
                         </section>
                     </div>
                 </div>
@@ -134,12 +134,18 @@
         </div>
 
         <mMask ref="mask" :show="show_mask" @close="toggle_cart" />
+
+
+        <div v-if="loading" class="loading"> loading........... </div>
     </div>
 </template>
 <script>
 import GoogdList from '@/views/Shop/Children/GoodsList'
 import Comments from '@/views/Shop/Children/Comments'
 import ShopInfo from '@/views/Shop/Children/ShopInfo'
+// let GoogdList = r => require.ensure([], () => r(require('@/views/Shop/Children/GoodsList')), 'shop_goodslist');
+// let Comments = r => require.ensure([], () => r(require('@/views/Shop/Children/Comments')), 'shop_comments');
+// let ShopInfo = r => require.ensure([], () => r(require('@/views/Shop/Children/ShopInfo')), 'shop__shop_info');
 import { mapGetters } from 'vuex'
 import { _throttle, _debounce, getScrollTop } from '@/common/javascript/util.js'
 import mMask from '@/components/Mask/Mask'
@@ -147,6 +153,7 @@ import { back } from '@/components/mixin.js';
 export default {
     data() {
         return {
+            loading: true,
             title_tip_distance: '0',
             current_content_idx: 1,
             current_content_distance: '0',
@@ -198,6 +205,9 @@ export default {
             loop: true,
             autoplay: 1000,
         });
+        this.$nextTick(() => {
+            this.loading = false;
+        })
     },
     computed: {
         // cart() {
@@ -649,5 +659,13 @@ export default {
 .scale-leave-to {
     transform: scale(0.3);
     opacity: 0;
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, .9);
 }
 </style>

@@ -2,16 +2,19 @@ export const getScrollTop = () => {
     return Math.max(document.documentElement.scrollTop, document.body.scrollTop);
 }
 
-export const getOffsetTop =  (dom) => {
+export const getOffsetTop = (dom) => window.requestAnimationFrame(() => {
     if (!dom) return;
     return dom.offsetTop + (dom.offsetParent ? getOffsetTop(dom.offsetParent) : 0);
-}
+})
 
-export const getStyle = (dom, attr) => {
+// export const getOffsetTop = (dom) => {
+//     if (!dom) return;
+//     return dom.offsetTop + (dom.offsetParent ? getOffsetTop(dom.offsetParent) : 0);
+// }
+export const getStyle = (dom, attr) => window.requestAnimationFrame(() => {
     if (!dom) return;
     dom = dom._uid ? dom._vnode.elm : dom
     let style = null;
-
     if (window.getComputedStyle) {
         style = window.getComputedStyle(dom, null)[attr]
     } else {
@@ -19,7 +22,21 @@ export const getStyle = (dom, attr) => {
     }
     
     return /(px|pt|rem|em)$/.test(style) ? parseFloat(style) : style
-}
+
+});
+// export const getStyle = (dom, attr) => {
+//     if (!dom) return;
+//     dom = dom._uid ? dom._vnode.elm : dom
+//     let style = null;
+
+//     if (window.getComputedStyle) {
+//         style = window.getComputedStyle(dom, null)[attr]
+//     } else {
+//         style = dom.currentStyle[attr]
+//     }
+    
+//     return /(px|pt|rem|em)$/.test(style) ? parseFloat(style) : style
+// }
 
 export const Store = {
     set(key, val) {

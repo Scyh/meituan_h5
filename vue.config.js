@@ -1,4 +1,5 @@
 const path = require('path');
+const SkeletonWebpackPlugin = require('vue-skeleton-webpack-plugin');
 
 module.exports = {
     devServer: {
@@ -21,21 +22,36 @@ module.exports = {
     },
 
     pluginOptions: {
-      'style-resources-loader': {
-        preProcessor: 'sass',
-        patterns: ['*']
-      }
+        'style-resources-loader': {
+            preProcessor: 'sass',
+            patterns: ['*']
+        }
     },
 
     chainWebpack: config => {
-        config.resolve.alias.set('src', path.join(__dirname, 'src'))
+        config.resolve.alias.set('src', path.join(__dirname, 'src'));
+    },
+
+    configureWebpack: {
+        plugins: [
+            new SkeletonWebpackPlugin({
+                webpackConfig: {
+                    entry: {
+                        app: path.join(__dirname, './src/entry-skeleton.js')
+                    }
+                },
+                minimize: true,
+                quiet: true,
+            })
+        ]
     },
 
     css: {
         loaderOptions: {
-          sass: {
-            data: `@import "@/common/style/common.scss";`
+            sass: {
+                data: `@import "@/common/style/common.scss";`
             }
-        }
+        },
+        extract: true,
     }
 }
