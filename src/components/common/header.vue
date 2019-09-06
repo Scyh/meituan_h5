@@ -19,7 +19,7 @@ export default {
         }
     },
     created() {
-        this.$store.state.location ? (this.location = this.$store.state.location) : this.getLocation();
+        // this.$store.state.location ? (this.location = this.$store.state.location) : this.getLocation();
 
     },
     methods: {

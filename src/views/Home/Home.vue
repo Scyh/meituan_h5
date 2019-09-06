@@ -10,7 +10,7 @@
             </ul>
         </section>
         <section class="near_shop">附近商家</section>
-        <section ref="screen_group" :class="['screen_group', fix_to_top ? 'fixed' : '']">
+        <section ref="screen_group" class="screen_group">
             <div>
                 <ul>
                     <li :class="['screen_item', sort_list.includes(s_s.selected) ? 'selected' : '']" @click="sort(10)">
@@ -216,12 +216,6 @@ export default {
             }
         };
     },
-    mounted() {
-        this.listen_scroll();
-    },
-    destoryed() {
-        window.removeEventListener("scroll");
-    },
     methods: {
         // 获取店家数据
         async getShop(sort_type) {
@@ -297,18 +291,18 @@ export default {
          * 
          */
 
-        listen_scroll(ev) {
-            this.offset_top = getOffsetTop(this.$refs.screen_group);
-            window.addEventListener("scroll", ev => {
-                if (Math.max(document.documentElement.scrollTop, document.body.scrollTop) >= (this.offset_top - getStyle(this.$refs.top_header, "height"))) {
-                    this.fix_to_top = true;
-                    this.show_location = false;
-                } else {
-                    this.fix_to_top = false;
-                    this.show_location = true;
-                }
-            }, false);
-        },
+        // listen_scroll(ev) {
+        //     this.offset_top = getOffsetTop(this.$refs.screen_group);
+        //     window.addEventListener("scroll", ev => {
+        //         if (Math.max(document.documentElement.scrollTop, document.body.scrollTop) >= (this.offset_top - getStyle(this.$refs.top_header, "height"))) {
+        //             this.fix_to_top = true;
+        //             this.show_location = false;
+        //         } else {
+        //             this.fix_to_top = false;
+        //             this.show_location = true;
+        //         }
+        //     }, false);
+        // },
 
         load_more_handle() {
             let that = this;
@@ -377,6 +371,10 @@ export default {
     }
 }
 .screen_group {
+     position: sticky;
+    top: 50px;
+    left: 0;
+    z-index: 100;
     width: 100%;
     > div {
         position: relative;
@@ -548,12 +546,6 @@ export default {
         }
         
     }
-}
-.screen_group.fixed {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    z-index: 100;
 }
 .shop_list {
     margin-bottom: 40px;

@@ -39,7 +39,7 @@ export default {
     methods: {
         initStar() {
             let num = parseFloat(this.score || 0);
-            this.show_w = num / 5 * getStyle(this.$refs.star_bottom, 'width') / getStyle(document.documentElement, 'fontSize') + 'rem'
+            this.show_w = num / 5 * getStyle(this.$refs.star_bottom, 'width') + 'px';
         },
     },
 }

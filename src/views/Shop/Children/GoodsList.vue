@@ -1,12 +1,12 @@
 <template>
-    <div id="goods_list">
-        <nav v-if="nav.length > 0"  class="list_nav" ref="nav"  @touchstart="start" @touchmove="move" @touchend="end">
-            <a v-for="(i, idx) in nav" :key="i" :class="{ 'curr': curr_cate == i }" @click="jump_to_cate(idx)">
+    <div id="goods_list" ref="goods_list">
+        <nav v-if="nav.length > 0"  class="list_nav" ref="nav"  @touchstart="start" @touchmove="move" @touchend="end" @scroll="scroll_handle('nav')">
+            <a v-for="(i, idx) in nav" :key="i" :class="{ 'curr': curr_cate == i }" @click="jump_to_cate(idx)" ref="nav_a">
                 {{i}}
                 <span v-if="cate_count_local[i] && cate_count_local[i].count" class="cate_count">{{cate_count_local[i].count}}</span>
             </a>
         </nav>
-        <div v-if="goods_list.length > 0" class="list_content" ref="content" @touchstart="start" @touchmove="move" @touchend="end">
+        <div v-if="goods_list.length > 0" class="list_content" ref="content" @touchstart="start" @touchmove="move" @touchend="end" @scroll="scroll_handle('content')">
             <template v-if="goods_list.length > 0">
                 <section class="g_l_item" v-for="(i, idx) in goods_list" :key="idx" :ref="'g_l_i' + idx">
                     <div class="g_l_i_title">{{i.category}}</div>
@@ -59,6 +59,7 @@ export default {
             direction: null,
             curr_cate: null,  // 当前分类
             cate_h_list: [],    // 所有分类的高度
+            nav_h: 0,
             nav: [],
             goods_list: [
                 {
@@ -83,6 +84,7 @@ export default {
             ],
             cart_local: {},
             cate_count_local: {},
+            direction: 0,
         }
     },
     computed: {
@@ -92,23 +94,19 @@ export default {
     },
     created() {
         this.init_goods_list();
+        
+    },
+    mounted() {
+        // this.$nextTick(() => {
+        //     this.nav_h = this.$refs.nav_a.reduce((sum, i) =>  sum + Number(getStyle(i, 'height')),0);
+        //     console.log(this.nav_h)
+        //     this.goods_list_h = getStyle(this.$refs.goods_list, 'height')
+        // });
     },
     methods: {
         init_goods_list() {
             this.nav = Goods_List.nav;
             this.goods_list = Goods_List.content.slice(0);
-
-            // this.nav.unshift('热销');
-            // let len = Math.ceil(Math.random() * 7 + 3),
-            //     temp = [];
-            // this.goods_list.forEach(i => {
-            //     temp = [...temp, ...i.list];
-            // });
-            // temp.sort((a, b) => b.sale - a.sale)
-            // this.goods_list.unshift({
-            //     category: '热销',
-            //     list: temp.sort().slice(0, len - 1),
-            // });
 
             this.curr_cate = this.nav[0];
 
@@ -123,45 +121,68 @@ export default {
         },
 
         start(ev) {
-            this.move_start = ev.touches[0].pageY;
-            this.move_last = ev.touches[0].pageY;
+            // this.move_start = ev.touches[0].pageY;
+            // this.move_last = ev.touches[0].pageY;
+        },
+
+        scroll_handle(ref) {
+            this.get_curr_cate();
+            // console.log(this.direction === 1 ? '上' : '下');
+            
+            // // console.log(this.$parent.$refs.scroll_wrap.scrollTop, this.$refs[ref].scrollTop)
+            // if (this.direction && this.$refs[ref].scrollTop >= this.$parent.$refs.scroll_wrap.scrollTop) {
+            //     if (this.$refs[ref].scrollTop <= 130) {
+            this.$parent.$refs.scroll_wrap.scrollTop = this.$refs[ref].scrollTop;
+            //     }
+            //     console.log(1)
+            // } else if (!this.direction && this.$parent.$refs.scroll_wrap.scrollTop >= this.$refs[ref].scrollTop) {
+            //     this.$parent.$refs.scroll_wrap.scrollTop = this.$refs[ref].scrollTop;
+            //     console.log(2)
+            // }
+            
+            // this.direction = this.last_scroll_top < this.$refs[ref].scrollTop
+            // this.last_scroll_top = this.$refs[ref].scrollTop;
         },
 
         move(ev) {
-            let distance = ev.touches[0].pageY - this.move_last;
-            this.direction = ev.touches[0].pageY > this.move_last;
-            if (this.$refs.content.scrollTop <= 130) {
-                this.$parent.$refs.scroll_wrap.scrollBy(0, distance * -1)
-                // this.$parent.$refs.scroll_wrap.scrollTo(0, this.$parent.$refs.scroll_wrap.scrollTop - distance)
-            }
-            this.move_last = ev.touches[0].pageY;
-            this.move_last_scrollTop = this.$refs.content.scrollTop
-            this.get_curr_cate();
+            // if (this.nav_h + 80 - this.last_scroll_top == this.goods_list_h ) {
+            //     console.log('滑动到底部');
+            // }
+            // let distance = ev.touches[0].pageY - this.move_last;
+            // this.direction = ev.touches[0].pageY > this.move_last ? 1 : 2;
+            // if (!this.direction || (this.direction && this.$refs.content.scrollTop <= 130)) {
+            //     // this.$parent.$refs.scroll_wrap.scrollTo(0, this.$parent.$refs.scroll_wrap.scrollTop - distance)
+            //     this.$parent.$refs.scroll_wrap.scrollTop = this.$parent.$refs.scroll_wrap.scrollTop - distance;
+            // }
+
+            // this.move_last = ev.touches[0].pageY;
+            // this.move_last_scrollTop = this.$refs.content.scrollTop
         },
         
         end(ev) {
-            let timer,
-                that = this;
-            function trigger() {
-                clearTimeout(timer);
-                timer = setTimeout(() => {
-                    if (that.$refs.content.scrollTop != that.move_last_scrollTop) {
-                        if (that.$parent.$refs.scroll_wrap.scrollTop <= 130 && that.$refs.content.scrollTop <= 170) {
-                            let distance = that.$refs.content.scrollTop - that.move_last_scrollTop
-                            that.$parent.$refs.scroll_wrap.scrollBy(0, distance);
-                        }
-                        that.move_last_scrollTop = that.$refs.content.scrollTop
-                        trigger();
-                        that.get_curr_cate();
-                    } else {
-                        clearTimeout(timer);
-                        that.move_start = 0;
-                        that.move_last = 0;
-                    }
-                }, 20)
+            // this.direction = 0;
+            // let timer,
+            //     that = this;
+            // function trigger() {
+            //     clearTimeout(timer);
+            //     timer = setTimeout(() => {
+            //         if (that.$refs.content.scrollTop != that.move_last_scrollTop) {
+            //             if (that.$parent.$refs.scroll_wrap.scrollTop <= 130 && that.$refs.content.scrollTop <= 170) {
+            //                 let distance = that.$refs.content.scrollTop - that.move_last_scrollTop
+            //                 that.$parent.$refs.scroll_wrap.scrollBy(0, distance);
+            //             }
+            //             that.move_last_scrollTop = that.$refs.content.scrollTop
+            //             trigger();
+            //             that.get_curr_cate();
+            //         } else {
+            //             clearTimeout(timer);
+            //             that.move_start = 0;
+            //             that.move_last = 0;
+            //         }
+            //     }, 20)
                 
-            }
-            trigger();
+            // }
+            // trigger();
         },
 
         get_curr_cate(start) {
@@ -259,6 +280,7 @@ export default {
         color: #666;
         overflow-y: scroll;
         background: #eee;
+        box-sizing: border-box;
         a {
             padding: 15px 10px 22px;
             width: 100%;
